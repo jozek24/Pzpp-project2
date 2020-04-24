@@ -8,7 +8,7 @@ namespace OSKManager.Model
     {
         public List<int> InstructorsId { get; set; }
         public List<Instructor> Instructor { get; set; }
-        public List<Student> StudentsId { get; set; }
+        public List<int> StudentsId { get; set; }
         public List<Student> Students { get; set; }
 
     }
