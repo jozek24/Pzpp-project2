@@ -29,7 +29,8 @@ namespace OSKManager.Api
         {
             services.AddControllers();
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseMySql(Configuration.GetConnectionString("DefaultConnection")));
+                options.UseMySql(Configuration.GetConnectionString("sqlConnection"),
+                    opts=>opts.MigrationsAssembly("OSKManager.Api")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
