@@ -10,7 +10,7 @@ namespace OSKManager.Model
         public string Name { get; set; }
         public string Description { get; set; }
         public ICollection<LectureDate> DateOfLecture { get; set; }
-        public ICollection<LectureDate> DateOfDriving { get; set; }
+        public ICollection<DrivingDate> DateOfDriving { get; set; }
         public int FinishedLectureHours { get; set; }
         public int FinishedDrivingHours { get; set; }
         public decimal ActualPrice { get; set; }

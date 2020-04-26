@@ -4,7 +4,7 @@ using System.Text;
 
 namespace OSKManager.Model
 {
-    public class LectureDate : IEntity<Guid>
+    public class DrivingDate :IEntity<Guid>
     {
         public Guid Id { get; set; }
         public DateTime DateTime { get; set; }
