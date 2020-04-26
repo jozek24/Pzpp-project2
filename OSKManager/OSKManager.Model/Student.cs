@@ -25,6 +25,7 @@ namespace OSKManager.Model
         public Address Address { get; set; }
         public Gender Gender { get; set; }
 
+        [DataType(DataType.Date)]
         public DateTime Birthdate { get; set; }
 
         [Required]
