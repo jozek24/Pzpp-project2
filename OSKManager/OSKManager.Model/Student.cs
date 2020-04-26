@@ -34,9 +34,6 @@ namespace OSKManager.Model
         public ICollection<string> PkkNumber { get; set; }
         public Instructor Instructor { get; set; }
 
-
-
-
         public ICollection<int> CoursesId { get; set; }
         public ICollection<Course> Courses { get; set; }
     }
