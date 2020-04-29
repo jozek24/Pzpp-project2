@@ -59,7 +59,7 @@ namespace OSKManager.Api.Models
             }
         }
 
-        public async Task<IEnumerable<T>> FindBy(Expression<Func<T, bool>> predicate)
+        public async Task<IQueryable<T>> FindBy(Expression<Func<T, bool>> predicate)
         {
             IQueryable<T> query = _set.Where(predicate);
             return query;
@@ -68,6 +68,11 @@ namespace OSKManager.Api.Models
         public async Task<T> GetSingle(int id)
         {
             return await _set.FirstOrDefaultAsync(r => r.Id == id);
+        }
+
+        public IQueryable<T> GetAllRecords()
+        {
+            return _set;
         }
     }
 }

@@ -16,7 +16,7 @@ using OSKManager.Model;
 
 namespace OSKManager.Api
 {
-    public class Startup<T> where T : IEntity<int>
+    public class Startup
     {
         public Startup(IConfiguration configuration)
         {
