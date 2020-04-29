@@ -15,6 +15,6 @@ namespace OSKManager.Api.Models
         Task<IEnumerable<T>> FindBy(Expression<Func<T, bool>> predicate);
         Task<T> Add(T entity);
         Task<T> Delete(T entity);
-        Task<T> Edit(T entity);
+        Task<T> Update(T entity);
     }
 }
