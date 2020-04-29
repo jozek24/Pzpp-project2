@@ -2,12 +2,13 @@
 using OSKManager.Model;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace OSKManager.Api.Models
 {
-    public class RepositoryService<T> : IRepositoryService<T> where T : class, IEntity<int>
+    public class RepositoryService<T> : IRepositoryService<T> where T : class, IEntity<Guid>
     {
         protected ApplicationDbContext _context;
         protected DbSet<T> _set;
@@ -63,7 +64,7 @@ namespace OSKManager.Api.Models
             return query;
         }
 
-        public async Task<T> GetSingle(int id)
+        public async Task<T> GetSingle(Guid id)
         {
             return await _set.FirstOrDefaultAsync(r => r.Id == id);
         }

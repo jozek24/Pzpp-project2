@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using OSKManager.Api.Models;
 using OSKManager.Model;
 using System;
+using System.Buffers;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -11,11 +12,11 @@ namespace OSKManager.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UsersController : ControllerBase 
+    public class AdministratorController : ControllerBase 
     {
-        private readonly IRepositoryService<User> repositoryService;
+        private readonly IRepositoryService<Administrator> repositoryService;
 
-        public UsersController(IRepositoryService<User> repositoryService)
+        public AdministratorController(IRepositoryService<Administrator> repositoryService)
         {
             this.repositoryService = repositoryService;
         }
@@ -35,7 +36,7 @@ namespace OSKManager.Api.Controllers
         }
 
         [HttpGet("{id:int}")]
-        public async Task<ActionResult<User>> GetUser(int id)
+        public async Task<ActionResult<Administrator>> GetUser(Guid id)
         {
             try
             {
@@ -56,11 +57,11 @@ namespace OSKManager.Api.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<User>> CreateUser(User user)
+        public async Task<ActionResult<Administrator>> CreateUser(Administrator administrator)
         {
             try
             {
-                var createdUser = await repositoryService.Add(user);
+                var createdUser = await repositoryService.Add(administrator);
 
                 return CreatedAtAction(nameof(CreateUser), new { id = createdUser.Id },
                     createdUser);
@@ -73,11 +74,11 @@ namespace OSKManager.Api.Controllers
         }
 
         [HttpPut("{id:int}")]
-        public async Task<ActionResult<User>> UpdateUser(int id, User user)
+        public async Task<ActionResult<Administrator>> UpdateUser(Guid id, Administrator administrator)
         {
             try
             {
-                if (id != user.Id)
+                if (id != administrator.Id)
                 {
                     return BadRequest("User ID mismatch");
                 }
@@ -89,7 +90,7 @@ namespace OSKManager.Api.Controllers
                     return NotFound($"User with Id = {id} not found");
                 }
 
-                return await repositoryService.Update(user);
+                return await repositoryService.Update(administrator);
             }
             catch (Exception)
             {
@@ -99,18 +100,18 @@ namespace OSKManager.Api.Controllers
         }
 
         [HttpDelete("id:int")]
-        public async Task<ActionResult<User>> DeleteUser(User user)
+        public async Task<ActionResult<Administrator>> DeleteUser(Administrator administrator)
         {
             try
             {
-                var userToDelete = await repositoryService.GetSingle(user.Id);
+                var userToDelete = await repositoryService.GetSingle(administrator.Id);
 
                 if (userToDelete == null)
                 {
-                    return NotFound($"User with Id = {user.Id} not found");
+                    return NotFound($"User with Id = {administrator.Id} not found");
                 }
 
-                return await repositoryService.Delete(user);
+                return await repositoryService.Delete(administrator);
             }
             catch (Exception)
             {
