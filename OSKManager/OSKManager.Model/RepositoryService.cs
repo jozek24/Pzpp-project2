@@ -22,44 +22,57 @@ namespace OSKManager.Api.Models
 
         public async Task<T> Add(T entity)
         {
-            var result = await _set.AddAsync(entity);//appDbContext.Employees.AddAsync(employee);
-            _context.SaveChangesAsync();
+            var result = await _set.AddAsync(entity);
+            await _context.SaveChangesAsync();
             return result.Entity;
         }
 
         public async Task<T> Delete(T entity)
         {
-            //var result = await _context.Find(T.Id);
-            //var result = await _context.Find<T>(T.Id);
-            //var result = await appDbContext.Employees
-            //    .FirstOrDefaultAsync(e => e.EmployeeId == employeeId);
-            //if (result != null)
-            //{
-            //    _context.Remove(result);
-            //    await _context.SaveChangesAsync();
-            //    return result;
-            //}
+            var result = await _set.FirstOrDefaultAsync(e => e.Id == entity.Id);
+
+            if(result != null)
+            {
+                _set.Remove(entity);
+                await _context.SaveChangesAsync();
+                return result;
+            }
 
             return null;
         }
 
-        public async Task<T> Edit(T entity)
+        public async Task<T> Update(T entity)
         {
-            throw new NotImplementedException();
+            var result = await _set.FirstOrDefaultAsync(x => x.Id == entity.Id);
+            try
+            {
+                (_context as DbContext).Entry(entity).State = EntityState.Modified;
+                //System.Data.Entity.EntityState.Modified
+
+                await _context.SaveChangesAsync();
+
+                return result;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
         }
 
-        public async Task<IEnumerable<T>> FindBy(Expression<Func<T, bool>> predicate)
+        public async Task<IQueryable<T>> FindBy(Expression<Func<T, bool>> predicate)
         {
-            throw new NotImplementedException();
+            IQueryable<T> query = _set.Where(predicate);
+            return query;
         }
 
         public async Task<T> GetSingle(int id)
         {
-            throw new NotImplementedException();
-            //return await _context.
-            //return await appDbContext.Employees
-            //    .Include(e => e.Department)
-            //    .FirstOrDefaultAsync(e => e.EmployeeId == employeeId);
+            return await _set.FirstOrDefaultAsync(r => r.Id == id);
+        }
+
+        public IQueryable<T> GetAllRecords()
+        {
+            return _set;
         }
     }
 }

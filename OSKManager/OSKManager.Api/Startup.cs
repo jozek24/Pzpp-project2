@@ -4,6 +4,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+<<<<<<< HEAD
+=======
+using Microsoft.Extensions.Logging;
+using OSKManager.Api.Models;
+>>>>>>> Repository
 using OSKManager.Model;
 
 namespace OSKManager.Api
@@ -22,8 +27,16 @@ namespace OSKManager.Api
         {
             services.AddControllers();
             services.AddDbContext<ApplicationDbContext>(options =>
+<<<<<<< HEAD
                 options.UseMySql(Configuration.GetConnectionString("sqlConnection"),
                     opts=>opts.MigrationsAssembly("OSKManager.Api")));
+=======
+                options.UseMySql(Configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddScoped(typeof(IRepositoryService<>), typeof(RepositoryService<>));
+
+            services.AddControllers();
+>>>>>>> Repository
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
