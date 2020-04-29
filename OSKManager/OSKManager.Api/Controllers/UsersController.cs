@@ -11,11 +11,11 @@ namespace OSKManager.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UserController : ControllerBase 
+    public class UsersController : ControllerBase 
     {
         private readonly IRepositoryService<User> repositoryService;
 
-        public UserController(IRepositoryService<User> repositoryService)
+        public UsersController(IRepositoryService<User> repositoryService)
         {
             this.repositoryService = repositoryService;
         }
