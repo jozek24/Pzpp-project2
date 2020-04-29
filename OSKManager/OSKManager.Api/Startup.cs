@@ -12,10 +12,11 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using OSKManager.Api.Models;
+using OSKManager.Model;
 
 namespace OSKManager.Api
 {
-    public class Startup
+    public class Startup<T> where T : IEntity<int>
     {
         public Startup(IConfiguration configuration)
         {
@@ -30,6 +31,10 @@ namespace OSKManager.Api
             services.AddControllers();
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseMySql(Configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddScoped(typeof(IRepositoryService<>), typeof(RepositoryService<>));
+
+            services.AddControllers();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
