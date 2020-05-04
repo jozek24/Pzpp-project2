@@ -13,9 +13,9 @@ namespace OSKManager.Model
         public string PersonalIdNumber { get; set; } //should be required
 
         public ICollection<PkkNumber> PkkNumber { get; set; }
-        public Instructor Instructor { get; set; }
+        //public Instructor Instructor { get; set; }
 
-        public ICollection<Course> CoursesId { get; set; }
+        //public ICollection<Course> CoursesId { get; set; }
         public ICollection<Course> Courses { get; set; }
     }
 }

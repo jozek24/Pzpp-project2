@@ -8,5 +8,6 @@ namespace OSKManager.Model
 {
     public class Administrator : User
     {
+        public string PhotoPath { get; set; }
     }
 }
