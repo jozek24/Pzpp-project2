@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace OSKManager.Api.Models
 {
-    public interface IRepositoryService<T> where T : IEntity<Guid>
+    public interface IRepositoryService<T> where T : class
     {
         IQueryable<T> GetAllRecords();
         Task<T> GetSingle(Guid id);
