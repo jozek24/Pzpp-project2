@@ -5,36 +5,17 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace OSKManager.Model
 {
-    public class Student : IEntity<Guid>
+    public class Student : User
     {
-        public Guid Id { get; set; }
-
-        [Required]
-        [MaxLength(50, ErrorMessage = "Length must be less then 50 characters.")]
-        public string FirstName { get; set; }
-
-        [Required]
-        [MaxLength(50, ErrorMessage = "Length must be less then 50 characters.")]
-        public string LastName { get; set; }
-
-        //public string PhoneNumber { get; set; }
-        //public string Email { get; set; }
-        //public string PhotoPath { get; set; }
-        //public string Password { get; set; }
-
-        public Address Address { get; set; }
-        public Gender Gender { get; set; }
-
         [DataType(DataType.Date)]
         public DateTime Birthdate { get; set; }
 
-        [Required]
-        public string PersonalIdNumber { get; set; }
+        public string PersonalIdNumber { get; set; } //should be required
 
         public ICollection<PkkNumber> PkkNumber { get; set; }
-        public Instructor Instructor { get; set; }
+        //public Instructor Instructor { get; set; }
 
-        public ICollection<Course> CoursesId { get; set; }
+        //public ICollection<Course> CoursesId { get; set; }
         public ICollection<Course> Courses { get; set; }
     }
 }
