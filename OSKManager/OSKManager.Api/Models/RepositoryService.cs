@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace OSKManager.Api.Models
 {
-    public class RepositoryService<T> : IRepositoryService<T> where T : class
+    public class RepositoryService<T> : IRepositoryService<T> where T : class, IEntity<Guid>
     {
         protected ApplicationDbContext _context;
         protected DbSet<T> _set;
