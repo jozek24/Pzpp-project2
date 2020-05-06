@@ -10,7 +10,9 @@ using OSKManager.Model;
 
 namespace OSKManager.Api.Controllers
 {
-    public class AccountController : Controller
+    [Route("api/[controller]")]
+    [ApiController]
+    public class AccountController : ControllerBase
     {
         private readonly UserManager<User> _userManager;
         private readonly IMapper _mapper;
@@ -29,7 +31,7 @@ namespace OSKManager.Api.Controllers
 
         [HttpPost]
         //[ValidateAntiForgeryToken]
-        public async Task<IActionResult> Register([FromBody]UserRegistrationModel userModel)
+        public async Task<IActionResult> Register([FromBody]RegisterModel userModel)
         {
             var user = _mapper.Map<User>(userModel);
 
