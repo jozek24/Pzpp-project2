@@ -23,14 +23,7 @@ namespace OSKManager.Api.Controllers
             _mapper = mapper;
         }
 
-        //[HttpGet]
-        //public IActionResult Register()
-        //{
-        //    return View();
-        //}
-
         [HttpPost]
-        //[ValidateAntiForgeryToken]
         public async Task<IActionResult> Register([FromBody]RegisterModel userModel)
         {
             var user = _mapper.Map<User>(userModel);

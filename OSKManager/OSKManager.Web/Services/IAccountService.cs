@@ -8,7 +8,7 @@ namespace OSKManager.Web.Services
 {
     public interface IAccountService
     {
-        Task<UserRegistrationModel> Register(UserRegistrationModel userModel);
-        Task<UserRegistrationModel> Login(string email, string password);
+        //Task<UserRegistrationModel> Register(UserRegistrationModel userModel);
+        //Task<UserRegistrationModel> Login(string email, string password);
     }
 }

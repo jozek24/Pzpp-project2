@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace OSKManager.Api.Models
 {
-    public class UserRegistrationModel
+    public class RegisterModel
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
