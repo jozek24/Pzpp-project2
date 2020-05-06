@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OSKManager.Api", "OSKManage
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OSKManager.Api.Tests", "OSKManager.Api.Tests\OSKManager.Api.Tests.csproj", "{BBD44162-29C7-4479-BC22-C6C2F7E13A69}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OSKManager.Web", "OSKManager.Web\OSKManager.Web.csproj", "{D2593D20-C2D3-4E68-BCA0-184CFAA62CED}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OSKManager.Web", "OSKManager.Web\OSKManager.Web.csproj", "{D2593D20-C2D3-4E68-BCA0-184CFAA62CED}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
