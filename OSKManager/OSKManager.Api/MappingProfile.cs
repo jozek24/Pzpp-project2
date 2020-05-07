@@ -12,7 +12,7 @@ namespace OSKManager.Api
     {
         public MappingProfile()
         {
-            CreateMap<UserRegistrationModel, User>()
+            CreateMap<RegisterModel, User>()
                 .ForMember(u => u.UserName, opt => opt.MapFrom(x => x.Email));
         }
     }

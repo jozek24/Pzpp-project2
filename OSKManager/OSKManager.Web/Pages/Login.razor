@@ -1,7 +1,21 @@
 ﻿@page "/login"
+@using OSKManager.Web.Services
+@using OSKManager.Model.AuthenticationModels
 
 @layout HomepageLayout
-<h3>Login</h3>
+@inject IAuthService AuthService
+@inject NavigationManager NavigationManager
+
+
+@if (ShowErrors)
+{
+    <div class="alert alert-danger" role="alert">
+        <p>@Error</p>
+    </div>
+}
+
+
+
 <div class="container bg-light rounded shadow my-3">
     <div>
         <br /><br /><br /><br /><br />
@@ -12,26 +26,55 @@
     <div>
         <br />
     </div>
-    <div class="col-12 row">
-        <input class="form-control col-12" @*@bind="user.EmailAddress" *@ placeholder="email address" />
+
+    <div class="card">
+        <div class="card-body">
+            <EditForm Model="loginModel" OnValidSubmit="HandleLogin">
+                <DataAnnotationsValidator />
+                <ValidationSummary />
+
+                <div class="form-group">
+                    <label for="email">Email adres</label>
+                    <InputText Id="email" Class="form-control" @bind-Value="loginModel.Email" />
+                    <ValidationMessage For="@(() => loginModel.Email)" />
+                </div>
+                <div class="form-group">
+                    <label for="password">Hasło</label>
+                    <InputText Id="password" type="password" Class="form-control" @bind-Value="loginModel.Password" />
+                    <ValidationMessage For="@(() => loginModel.Password)" />
+                </div>
+                <button type="submit" class="form-control col-6 btn btn-primary">Logowanie</button>
+            </EditForm>
+        </div> 
     </div>
-    <br />
-    <div class="col-12 row">
-        <input type="password" class="form-control col-12" @* @bind="user.Password" *@ placeholder="password" />
-    </div>
-    <br />
-    <div class="col-12 row">
-        <span class="col-12"></span>
-        <input type="submit" class="form-control col-6 btn btn-primary" value="Login" />
-        <a href="/signup" class="col-3">Sign up</a>
-    </div>
-    <br />
+    
     <div class="col-12 row" style="text-align:left; font-weight:bold">
         <span class="col-12">@*@LoginMesssage*@</span>
         <a href="/"> Powrót do strony startowej </a>
     </div>
 </div>
 
-    @code {
+@code {
 
+    private LoginModel loginModel = new LoginModel();
+    private bool ShowErrors;
+    private string Error = "";
+
+    private async Task HandleLogin()
+    {
+        ShowErrors = false;
+
+        var result = await AuthService.Login(loginModel);
+
+        if (result.Successful)
+        {
+            NavigationManager.NavigateTo("/");
+        }
+        else
+        {
+            Error = result.Error;
+            ShowErrors = true;
+        }
     }
+
+}

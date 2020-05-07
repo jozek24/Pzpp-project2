@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Identity;
@@ -26,6 +24,11 @@ namespace OSKManager.Api.Controllers
         [HttpPost]
         public async Task<IActionResult> Register([FromBody]RegisterModel userModel)
         {
+            if (!ModelState.IsValid)
+            {
+                return Ok(new RegisterResult { Successful = false });
+            }
+
             var user = _mapper.Map<User>(userModel);
 
             var result = await _userManager.CreateAsync(user, userModel.Password);

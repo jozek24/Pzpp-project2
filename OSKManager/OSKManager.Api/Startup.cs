@@ -52,7 +52,6 @@ namespace OSKManager.Api
                 });
             services.AddScoped(typeof(IRepositoryService<>), typeof(RepositoryService<>));
 
-            services.AddControllers();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
