@@ -1,9 +1,23 @@
 ﻿@page "/registration"
+@using OSKManager.Web.Services
+@using OSKManager.Api.Models
+
 @layout HomepageLayout
+@inject IAuthService AuthService
+@inject NavigationManager NavigationManager
 
-
+@if (ShowErrors)
+{
+    <div class="alert alert-danger" role="alert">
+        @foreach (var error in Errors)
+        {
+            <p>@error</p>
+        }
+    </div>
+}
 <div class="container bg-light rounded shadow my-3">
-    @*<EditForm Model="@user" OnValidSubmit="@RegisterUser">*@
+
+
     <div>
         <br /><br /><br /><br /><br />
     </div>
@@ -13,30 +27,59 @@
     <div>
         <br />
     </div>
-    <div class="col-12 row">
-        <input class="form-control col-12" @*@bind="user.EmailAddress" *@ placeholder="email address" />
-    </div>
-    <br />
-    <div class="col-12 row">
-        <input type="password" class="form-control col-12" @*@bind="user.Password" *@ placeholder="password" />
-    </div>
-    <br />
-    <div class="col-12 row">
-        <input type="password" class="form-control col-12" @*@bind="user.ConfirmPassword" *@ placeholder="confirm password" />
-    </div>
-    <br />
-    <div class="col-12 row">
-        <span class="col-12"></span>
-        <input type="submit" class="form-control col-6 btn btn-primary" value="Sign up" />
-        <a href="/" class="col-6">Already an user?</a>
-    </div>
-    <br />
-    <div class="col-12 row" style="text-align:left; font-weight:bold">
-        <span class="col-12"> @*@LoginMesssage*@ </span>
-        <a href="/"> Powrót do strony startowej </a>
-    </div>
-    @*</EditForm>*@
-</div>
-    @code {
+    <div class="container bg-light rounded shadow my-3">
+        <EditForm Model="RegisterModel" OnValidSubmit="HandleRegistration">
+            <DataAnnotationsValidator />
+            <ValidationSummary />
 
+            <div class="form-group">
+                <label for="email">Email adres</label>
+                <InputText Id="email" class="form-control" @bind-Value="RegisterModel.Email" />
+                <ValidationMessage For="@(() => RegisterModel.Email)" />
+            </div>
+            <div class="form-group">
+                <label for="password">Hasło</label>
+                <InputText Id="password" type="password" class="form-control" @bind-Value="RegisterModel.Password" />
+                <ValidationMessage For="@(() => RegisterModel.Password)" />
+            </div>
+            <div class="form-group">
+                <label for="password">Potwierdź hasło</label>
+                <InputText Id="password" type="password" class="form-control" @bind-Value="RegisterModel.ConfirmPassword" />
+                <ValidationMessage For="@(() => RegisterModel.ConfirmPassword)" />
+            </div>
+            <button type="submit" class="form-control col-6 btn btn-primary">Submit</button>
+            
+            <a href="/login" class="col-6">Masz już konto?</a>
+        </EditForm>
+        <div class="col-12 row" style="text-align:left; font-weight:bold">
+            <span class="col-12"> @*@LoginMesssage*@ </span>
+            <a href="/"> Powrót do strony startowej </a>
+        </div>
+
+
+    </div>
+</div>
+@code {
+
+    private RegisterModel RegisterModel = new RegisterModel();
+    private bool ShowErrors;
+    private IEnumerable<string> Errors;
+
+    private async Task HandleRegistration()
+    {
+        ShowErrors = false;
+
+        var result = await AuthService.Register(RegisterModel);
+
+        if (result.Successful)
+        {
+            NavigationManager.NavigateTo("/login");
+        }
+        else
+        {
+            Errors = result.Errors;
+            ShowErrors = true;
+        }
     }
+
+}
