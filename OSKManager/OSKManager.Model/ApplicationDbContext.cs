@@ -15,17 +15,6 @@ namespace OSKManager.Model
         {
             base.OnModelCreating(modelBuilder);
 
-            //modelBuilder.Entity<Student>()
-            //    .ToTable("Student")
-            //    .HasDiscriminator<string>("Student");
-
-            //modelBuilder.Entity<User>()
-            //    .HasDiscriminator<int>("UserType")
-            //    .HasValue<Administrator>(1)
-            //    .HasValue<Instructor>(2)
-            //    .HasValue<Student>(3);
-
-
             modelBuilder.ApplyConfiguration(new CategoryConfiguration());
             modelBuilder.ApplyConfiguration(new RoleConfiguration());
 

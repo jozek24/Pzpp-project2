@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
+using OSKManager.Model;
 using OSKManager.Model.AuthenticationModels;
 
 namespace OSKManager.Api.Controllers
@@ -16,10 +17,10 @@ namespace OSKManager.Api.Controllers
     public class LoginController : ControllerBase
     {
         private readonly IConfiguration _configuration;
-        private readonly SignInManager<IdentityUser> _signInManager;
+        private readonly SignInManager<User> _signInManager;
 
         public LoginController(IConfiguration configuration,
-            SignInManager<IdentityUser> signInManager)
+            SignInManager<User> signInManager)
         {
             _configuration = configuration;
             _signInManager = signInManager;

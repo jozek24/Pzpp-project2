@@ -6,21 +6,22 @@
 @inject IAuthService AuthService
 @inject NavigationManager NavigationManager
 
-@if (ShowErrors)
-{
-    <div class="alert alert-danger" role="alert">
-        @foreach (var error in Errors)
-        {
-            <p>@error</p>
-        }
-    </div>
-}
 <div class="container bg-light rounded shadow my-3">
 
 
     <div>
         <br /><br /><br /><br /><br />
     </div>
+    
+    @if (ShowErrors)
+    {
+        <div class="alert alert-danger" role="alert">
+            @foreach (var error in Errors)
+            {
+                <p>@error</p>
+            }
+        </div>
+    }
     <div>
         <h3 style="font-weight:bold; color:purple">OSK Manager Registration</h3>
     </div>
