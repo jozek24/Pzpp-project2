@@ -8,7 +8,12 @@ namespace OSKManager.Api.Models
 {
     public class RegisterModel
     {
+        [Required]
+        [MaxLength(50, ErrorMessage = "Length must be less then 50 characters.")]
         public string FirstName { get; set; }
+
+        [Required]
+        [MaxLength(50, ErrorMessage = "Length must be less then 50 characters.")]
         public string LastName { get; set; }
 
         [Required(ErrorMessage = "Email jest wymagany.")]

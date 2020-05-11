@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using OSKManager.Web.Data;
 using OSKManager.Web.Services;
 
 namespace OSKManager.Web
@@ -33,7 +32,7 @@ namespace OSKManager.Web
             });
             services.AddHttpClient<AuthenticationStateProvider, ApiAuthenticationStateProvider>(client =>
             {
-                client.BaseAddress=new Uri("https://localhost:5003/");
+                client.BaseAddress = new Uri("https://localhost:5003/");
             });
             services.AddBlazoredLocalStorage();
             services.AddAuthorizationCore();

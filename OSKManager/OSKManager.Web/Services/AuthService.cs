@@ -29,7 +29,7 @@ namespace OSKManager.Web.Services
 
         public async Task<RegisterResult> Register(RegisterModel registerModel)
         {
-            var result = await _httpClient.PostJsonAsync<RegisterResult>("api/account", registerModel);
+        var result = await _httpClient.PostJsonAsync<RegisterResult>("api/account", registerModel);
 
             return result;
         }
