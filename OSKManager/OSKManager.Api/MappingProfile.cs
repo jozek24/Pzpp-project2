@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using OSKManager.Api.Models;
 using OSKManager.Model;
 
@@ -12,7 +8,7 @@ namespace OSKManager.Api
     {
         public MappingProfile()
         {
-            CreateMap<RegisterModel, User>()
+            CreateMap<RegisterModel, Student>()
                 .ForMember(u => u.UserName, opt => opt.MapFrom(x => x.Email));
         }
     }

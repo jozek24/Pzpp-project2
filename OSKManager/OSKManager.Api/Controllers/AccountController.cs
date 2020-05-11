@@ -29,8 +29,7 @@ namespace OSKManager.Api.Controllers
                 return Ok(new RegisterResult { Successful = false });
             }
 
-            var user = _mapper.Map<User>(userModel);
-
+            var user = _mapper.Map<Student>(userModel);
             var result = await _userManager.CreateAsync(user, userModel.Password);
 
             if (!result.Succeeded)
@@ -40,7 +39,8 @@ namespace OSKManager.Api.Controllers
                 return Ok(new RegisterResult { Successful = false, Errors = errors });
 
             }
-            await _userManager.AddToRoleAsync(user, "Student");
+            await _userManager.AddToRoleAsync(user,"Student");
+
             return Ok(new RegisterResult { Successful = true });
         }
     }
