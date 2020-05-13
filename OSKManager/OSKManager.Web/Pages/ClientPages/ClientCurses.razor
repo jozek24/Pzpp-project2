@@ -1,2 +1,34 @@
 ﻿@layout ClientLayout
 @page "/clientCurses"
+
+<div style="text-align:center">
+    @*<button class="btn btn-primary" @onclick="CursesList">Wyświetl kursy</button>*@
+    <div class="container">
+        <div class="row">
+
+            @foreach (var item in listOfCurses)
+            {
+                <div class="col-4">
+                    <figure>
+                        <img src="/Images/curseIcon.png" alt="how2html logo" title="logo">
+                        <figcaption>@*@item.Name*@</figcaption>
+                    </figure>
+                </div>
+            }
+
+        </div>
+    </div>
+</div>
+
+@code
+{
+    string kurs;
+    public List<OSKManager.Model.Student> listOfCurses = new List<OSKManager.Model.Student>();
+ 
+    
+    protected override async Task OnInitializedAsync()
+    {
+       //Zczytanie listy kursów z obiektu student
+    }
+
+}
