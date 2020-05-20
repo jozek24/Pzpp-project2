@@ -1,4 +1,5 @@
-﻿using System.Net.Http;
+﻿using System;
+using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Text.Json;
@@ -6,9 +7,11 @@ using System.Threading.Tasks;
 using Blazored.LocalStorage;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
+using Microsoft.Extensions.Options;
 using OSKManager.Api.Models;
 using OSKManager.Model;
 using OSKManager.Model.AuthenticationModels;
+using OSKManager.Web.Data;
 
 namespace OSKManager.Web.Services
 {
@@ -29,7 +32,7 @@ namespace OSKManager.Web.Services
 
         public async Task<RegisterResult> Register(RegisterModel registerModel)
         {
-        var result = await _httpClient.PostJsonAsync<RegisterResult>("api/account", registerModel);
+            var result = await _httpClient.PostJsonAsync<RegisterResult>("api/account", registerModel);
 
             return result;
         }

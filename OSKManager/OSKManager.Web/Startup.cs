@@ -33,13 +33,13 @@ namespace OSKManager.Web
             services.AddBlazoredLocalStorage();
             services.AddAuthorizationCore();
 
-            services.AddSingleton<HttpClient>(s => new HttpClient
+            services.AddHttpClient<IAuthService,AuthService>("servicsdcdfs",x=>
             {
-                BaseAddress = new Uri("https://localhost:5003/")
+                x.BaseAddress = new Uri("https://localhost:5003/");
             });
-            
+            services.AddSingleton<HttpClient>();
+
             services.AddScoped<AuthenticationStateProvider, ApiAuthenticationStateProvider>();
-            services.AddScoped<IAuthService, AuthService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
