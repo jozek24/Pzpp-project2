@@ -38,7 +38,7 @@ namespace OSKManager.Web
                 BaseAddress = new Uri("https://localhost:5003/")
             });
             
-            //services.AddScoped<AuthenticationStateProvider, ApiAuthenticationStateProvider>();
+            services.AddScoped<AuthenticationStateProvider, ApiAuthenticationStateProvider>();
             services.AddScoped<IAuthService, AuthService>();
         }
 
