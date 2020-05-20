@@ -11,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using OSKManager.Web.Data;
+using OSKManager.Web.Handlers;
 using OSKManager.Web.Services;
 
 namespace OSKManager.Web
@@ -33,13 +34,16 @@ namespace OSKManager.Web
             services.AddBlazoredLocalStorage();
             services.AddAuthorizationCore();
 
-            services.AddHttpClient<IAuthService,AuthService>("servicsdcdfs",x=>
+            services.AddTransient<ValidateHeaderHandler>();
+
+            services.AddHttpClient<IAuthService, AuthService>("servicsdcdfs", x =>
             {
                 x.BaseAddress = new Uri("https://localhost:5003/");
             });
-            services.AddSingleton<HttpClient>();
 
             services.AddScoped<AuthenticationStateProvider, ApiAuthenticationStateProvider>();
+
+            services.AddSingleton<HttpClient>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
