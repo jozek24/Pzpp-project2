@@ -2,73 +2,52 @@
 @using OSKManager.Web.Services
 @using OSKManager.Api.Models
 
-@layout HomepageLayout
+@layout LoginLayout
 @inject IAuthService AuthService
 @inject NavigationManager NavigationManager
 
-<div class="container bg-light rounded shadow my-3">
-
-
-    <div>
-        <br /><br /><br /><br /><br />
+@if (ShowErrors)
+{
+    <div class="alert alert-danger" role="alert">
+        @foreach (var error in Errors)
+        {
+            <p>@error</p>
+        }
     </div>
-    
-    @if (ShowErrors)
-    {
-        <div class="alert alert-danger" role="alert">
-            @foreach (var error in Errors)
-            {
-                <p>@error</p>
-            }
-        </div>
-    }
-    <div>
-        <h3 style="font-weight:bold; color:purple">OSK Manager Registration</h3>
-    </div>
-    <div>
-        <br />
-    </div>
-    <div class="container bg-light rounded shadow my-3">
-        <EditForm Model="RegisterModel" OnValidSubmit="HandleRegistration">
-            <DataAnnotationsValidator />
-            <ValidationSummary />
-            <div class="form-group">
-                <label for="firstName">Imię</label>
-                <InputText Id="firstName" class="form-control" @bind-Value="RegisterModel.FirstName" />
-                <ValidationMessage For="@(() => RegisterModel.FirstName)" />
-            </div>
-            <div class="form-group">
-                <label for="lastName">Nazwisko</label>
-                <InputText Id="lastName" class="form-control" @bind-Value="RegisterModel.LastName" />
-                <ValidationMessage For="@(() => RegisterModel.LastName)" />
-            </div>
-            <div class="form-group">
-                <label for="email">Email adres</label>
-                <InputText Id="email" class="form-control" @bind-Value="RegisterModel.Email" />
-                <ValidationMessage For="@(() => RegisterModel.Email)" />
-            </div>
-            <div class="form-group">
-                <label for="password">Hasło</label>
-                <InputText Id="password" type="password" class="form-control" @bind-Value="RegisterModel.Password" />
-                <ValidationMessage For="@(() => RegisterModel.Password)" />
-            </div>
-            <div class="form-group">
-                <label for="password">Potwierdź hasło</label>
-                <InputText Id="password" type="password" class="form-control" @bind-Value="RegisterModel.ConfirmPassword" />
-                <ValidationMessage For="@(() => RegisterModel.ConfirmPassword)" />
-            </div>
-            <button type="submit" class="form-control col-6 btn btn-primary">Submit</button>
+}
 
-            <a href="/login" class="col-6">Masz już konto?</a>
-        </EditForm>
-        <div class="col-12 row" style="text-align:left; font-weight:bold">
-            <span class="col-12"> @*@LoginMesssage*@ </span>
-            <a href="/"> Powrót do strony startowej </a>
-        </div>
-
-
+<EditForm Model="RegisterModel" OnValidSubmit="HandleRegistration">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+    <div class="form-group">
+        <label for="firstName">Imię</label>
+        <InputText Id="firstName" class="form-control" @bind-Value="RegisterModel.FirstName" />
+        <ValidationMessage For="@(() => RegisterModel.FirstName)" />
     </div>
-</div>
+    <div class="form-group">
+        <label for="lastName">Nazwisko</label>
+        <InputText Id="lastName" class="form-control" @bind-Value="RegisterModel.LastName" />
+        <ValidationMessage For="@(() => RegisterModel.LastName)" />
+    </div>
+    <div class="form-group">
+        <label for="email">Email adres</label>
+        <InputText Id="email" class="form-control" @bind-Value="RegisterModel.Email" />
+        <ValidationMessage For="@(() => RegisterModel.Email)" />
+    </div>
+    <div class="form-group">
+        <label for="password">Hasło</label>
+        <InputText Id="password" type="password" class="form-control" @bind-Value="RegisterModel.Password" />
+        <ValidationMessage For="@(() => RegisterModel.Password)" />
+    </div>
+    <div class="form-group">
+        <label for="password">Potwierdź hasło</label>
+        <InputText Id="password" type="password" class="form-control" @bind-Value="RegisterModel.ConfirmPassword" />
+        <ValidationMessage For="@(() => RegisterModel.ConfirmPassword)" />
+    </div>
+    <button type="submit" class="form-control col-6 btn btn-primary">Submit</button>
+
+    <a href="/login" class="col-6">Masz już konto?</a>
+</EditForm>
 @code {
 
     private RegisterModel RegisterModel = new RegisterModel();
@@ -83,7 +62,7 @@
 
         if (result.Successful)
         {
-            NavigationManager.NavigateTo("/login");
+            NavigationManager.NavigateTo("/Index");
         }
         else
         {

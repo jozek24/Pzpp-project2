@@ -2,7 +2,7 @@
 @using OSKManager.Web.Services
 @using OSKManager.Model.AuthenticationModels
 
-@layout HomepageLayout
+@layout LoginLayout
 @inject IAuthService AuthService
 @inject NavigationManager NavigationManager
 
@@ -14,45 +14,22 @@
     </div>
 }
 
+<EditForm Model="loginModel" OnValidSubmit="HandleLogin">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
 
-
-<div class="container bg-light rounded shadow my-3">
-    <div>
-        <br /><br /><br /><br /><br />
+    <div class="form-group">
+        <label for="email">Adres Email</label>
+        <InputText Id="email" Class="form-control" @bind-Value="loginModel.Email" />
+        <ValidationMessage For="@(() => loginModel.Email)" />
     </div>
-    <div>
-        <h3 style="font-weight:bold; color:purple">OSK MANAGER Login</h3>
+    <div class="form-group">
+        <label for="password">Hasło</label>
+        <InputText Id="password" type="password" Class="form-control" @bind-Value="loginModel.Password" />
+        <ValidationMessage For="@(() => loginModel.Password)" />
     </div>
-    <div>
-        <br />
-    </div>
-
-    <div class="card">
-        <div class="card-body">
-            <EditForm Model="loginModel" OnValidSubmit="HandleLogin">
-                <DataAnnotationsValidator />
-                <ValidationSummary />
-
-                <div class="form-group">
-                    <label for="email">Email adres</label>
-                    <InputText Id="email" Class="form-control" @bind-Value="loginModel.Email" />
-                    <ValidationMessage For="@(() => loginModel.Email)" />
-                </div>
-                <div class="form-group">
-                    <label for="password">Hasło</label>
-                    <InputText Id="password" type="password" Class="form-control" @bind-Value="loginModel.Password" />
-                    <ValidationMessage For="@(() => loginModel.Password)" />
-                </div>
-                <button type="submit" class="form-control col-6 btn btn-primary">Logowanie</button>
-            </EditForm>
-        </div> 
-    </div>
-    
-    <div class="col-12 row" style="text-align:left; font-weight:bold">
-        <span class="col-12">@*@LoginMesssage*@</span>
-        <a href="/"> Powrót do strony startowej </a>
-    </div>
-</div>
+    <button type="submit" class="form-control col-6 btn btn-primary">Logowanie</button>
+</EditForm>
 
 @code {
 

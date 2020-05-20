@@ -1,11 +1,16 @@
 using System;
+using System.Net.Http;
+using System.Reflection.Metadata.Ecma335;
 using Blazored.LocalStorage;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
+using Microsoft.AspNetCore.Components.Server;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using OSKManager.Web.Data;
 using OSKManager.Web.Services;
 
 namespace OSKManager.Web
@@ -25,17 +30,16 @@ namespace OSKManager.Web
         {
             services.AddRazorPages();
             services.AddServerSideBlazor();
-
-            services.AddHttpClient<IAuthService, AuthService>(client =>
-            {
-                client.BaseAddress = new Uri("https://localhost:5003/");
-            });
-            services.AddHttpClient<AuthenticationStateProvider, ApiAuthenticationStateProvider>(client =>
-            {
-                client.BaseAddress = new Uri("https://localhost:5003/");
-            });
             services.AddBlazoredLocalStorage();
             services.AddAuthorizationCore();
+
+            services.AddSingleton<HttpClient>(s => new HttpClient
+            {
+                BaseAddress = new Uri("https://localhost:5003/")
+            });
+            
+            //services.AddScoped<AuthenticationStateProvider, ApiAuthenticationStateProvider>();
+            services.AddScoped<IAuthService, AuthService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -56,6 +60,9 @@ namespace OSKManager.Web
             app.UseStaticFiles();
 
             app.UseRouting();
+
+            app.UseAuthentication();
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
