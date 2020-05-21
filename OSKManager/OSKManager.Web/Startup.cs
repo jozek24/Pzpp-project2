@@ -36,6 +36,10 @@ namespace OSKManager.Web
 
             services.AddTransient<ValidateHeaderHandler>();
 
+            services.AddHttpClient<ICourseService, CourseService>(client =>
+            {
+                client.BaseAddress = new Uri("https://localhost:44334/");
+            });
             services.AddHttpClient<IAuthService, AuthService>("servicsdcdfs", x =>
             {
                 x.BaseAddress = new Uri("https://localhost:5003/");

@@ -69,7 +69,7 @@ namespace OSKManager.Api.Models
             return await _set.FirstOrDefaultAsync(r => r.Id == id);
         }
 
-        public IQueryable<T> GetAllRecords()
+        public async Task<IQueryable<T>> GetAllRecords()
         {
             return _set;
         }

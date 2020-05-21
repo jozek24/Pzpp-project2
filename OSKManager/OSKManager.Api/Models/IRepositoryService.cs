@@ -9,7 +9,7 @@ namespace OSKManager.Api.Models
 {
     public interface IRepositoryService<T> where T : class
     {
-        IQueryable<T> GetAllRecords();
+        Task<IQueryable<T>> GetAllRecords();
         Task<T> GetSingle(Guid id);
         Task<IQueryable<T>> FindBy(Expression<Func<T, bool>> predicate);
         Task<T> Add(T entity);
