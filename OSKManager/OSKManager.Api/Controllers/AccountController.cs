@@ -1,25 +1,47 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using OSKManager.Api.Models;
+using OSKManager.Model;
 
 namespace OSKManager.Api.Controllers
 {
-    public class AccountController : Controller
+    [Route("api/[controller]")]
+    [ApiController]
+    public class AccountController : ControllerBase
     {
-        [HttpGet]
-        public IActionResult Register()
+        private readonly UserManager<User> _userManager;
+        private readonly IMapper _mapper;
+
+        public AccountController(UserManager<User> userManager, IMapper mapper)
         {
-            return View();
+            _userManager = userManager;
+            _mapper = mapper;
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult Register(UserRegistrationModel userModel)
+        public async Task<IActionResult> Register([FromBody]RegisterModel userModel)
         {
-            return View();
+            if (!ModelState.IsValid)
+            {
+                return Ok(new RegisterResult { Successful = false });
+            }
+
+            var user = _mapper.Map<Student>(userModel);
+            var result = await _userManager.CreateAsync(user, userModel.Password);
+
+            if (!result.Succeeded)
+            {
+                var errors = result.Errors.Select(x => x.Description);
+
+                return Ok(new RegisterResult { Successful = false, Errors = errors });
+
+            }
+            await _userManager.AddToRoleAsync(user,"Student");
+
+            return Ok(new RegisterResult { Successful = true });
         }
     }
 }

@@ -1,15 +1,17 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Net.Http;
+using System.Reflection.Metadata.Ecma335;
+using Blazored.LocalStorage;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Authorization;
+using Microsoft.AspNetCore.Components.Server;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using OSKManager.Web.Data;
+using OSKManager.Web.Handlers;
 using OSKManager.Web.Services;
 
 namespace OSKManager.Web
@@ -29,11 +31,23 @@ namespace OSKManager.Web
         {
             services.AddRazorPages();
             services.AddServerSideBlazor();
-            services.AddSingleton<WeatherForecastService>();
-            services.AddHttpClient<IAccountService, AccountService>(client =>
+            services.AddBlazoredLocalStorage();
+            services.AddAuthorizationCore();
+
+            services.AddTransient<ValidateHeaderHandler>();
+
+            services.AddHttpClient<ICourseService, CourseService>(client =>
             {
                 client.BaseAddress = new Uri("https://localhost:44334/");
             });
+            services.AddHttpClient<IAuthService, AuthService>("servicsdcdfs", x =>
+            {
+                x.BaseAddress = new Uri("https://localhost:5003/");
+            });
+
+            services.AddScoped<AuthenticationStateProvider, ApiAuthenticationStateProvider>();
+
+            services.AddSingleton<HttpClient>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -54,6 +68,9 @@ namespace OSKManager.Web
             app.UseStaticFiles();
 
             app.UseRouting();
+
+            app.UseAuthentication();
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
