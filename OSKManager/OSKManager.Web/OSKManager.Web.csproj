@@ -13,4 +13,13 @@
     <ProjectReference Include="..\OSKManager.Model\OSKManager.Model.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Areas\Administrator\Shared\" />
+    <Folder Include="Areas\Administrator\Pages\" />
+    <Folder Include="Areas\Instructor\Shared\" />
+    <Folder Include="Areas\Instructor\Pages\" />
+    <Folder Include="Areas\Student\Shared\" />
+    <Folder Include="Areas\Student\Pages\" />
+  </ItemGroup>
+
 </Project>
