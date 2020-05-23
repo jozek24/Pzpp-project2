@@ -17,6 +17,7 @@ namespace OSKManager.Model
 
             modelBuilder.ApplyConfiguration(new CategoryConfiguration());
             modelBuilder.ApplyConfiguration(new RoleConfiguration());
+            modelBuilder.ApplyConfiguration(new AdministratorAccountConfiguration());
 
         }
 
