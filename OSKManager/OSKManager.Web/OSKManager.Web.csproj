@@ -16,8 +16,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Areas\Administrator\Shared\" />
     <Folder Include="Areas\Administrator\Pages\" />
+    <Folder Include="Areas\Administrator\Shared\" />
     <Folder Include="Areas\Instructor\Shared\" />
     <Folder Include="Areas\Instructor\Pages\" />
     <Folder Include="Areas\Student\Shared\" />
