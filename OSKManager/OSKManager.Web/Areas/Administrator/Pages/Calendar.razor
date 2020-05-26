@@ -1,7 +1,13 @@
-﻿@page "/administrator/calendar" 
+﻿@page "/administrator/calendar"
 @inherits CalendarBase
+
 <h3>Calendar</h3>
+<input type="checkbox" id="showFooter" @bind="ShowFooter" />
+<label for="showFooter">Show Footer</label>
 
-@code {
-
-}
+<div class="card-deck">
+    @for (int i = 0; i < Days; i++)
+    {
+        <DisplayDay ShowFooter="ShowFooter"></DisplayDay>
+    }
+</div>
