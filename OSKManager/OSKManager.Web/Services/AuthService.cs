@@ -65,7 +65,7 @@ namespace OSKManager.Web.Services
                 await _localStorage.SetItemAsync("authToken", loginResult.Token);
                 ((ApiAuthenticationStateProvider)_authenticationStateProvider).MarkUserAsAuthenticated(loginResult.Token);
                 _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", loginResult.Token);
-
+                
                 return loginResult;
             }
 

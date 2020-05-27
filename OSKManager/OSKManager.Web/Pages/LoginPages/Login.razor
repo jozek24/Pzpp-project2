@@ -44,7 +44,15 @@
 
         if (result.Successful)
         {
-            NavigationManager.NavigateTo("/Index");
+            <AuthorizeView Roles="Student">
+                NavigationManager.NavigateTo("/clientPanel");
+            </AuthorizeView>
+            <AuthorizeView Roles="Administrator">
+                NavigationManager.NavigateTo("/adminPanel");
+            </AuthorizeView>
+            <AuthorizeView Roles="Instructor">
+                NavigationManager.NavigateTo("/Index");
+            </AuthorizeView>
         }
         else
         {
