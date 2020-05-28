@@ -173,11 +173,6 @@ nav{
     text-align: center;
     padding: 10px 0px;
 }
-.fifth-row-image {
-    max-height: 100%;
-    max-width: 100%;
-}
-
 .fourth-row-image {
     width: 300px;
     height: 300px;
@@ -190,6 +185,19 @@ nav{
     max-height: 100px;
     max-width: 100px;
 }
+.fifth-row-image {
+    max-height: 100%;
+    max-width: 100%;
+}
+.icone {
+    max-height: 50px;
+    max-width: 50px;
+    margin: 20px;
+}
+
+.sixth-row {
+}
+
 #blazor-error-ui {
     background: lightyellow;
     bottom: 0;
