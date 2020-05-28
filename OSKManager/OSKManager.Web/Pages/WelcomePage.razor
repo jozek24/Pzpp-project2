@@ -1,25 +1,83 @@
 ﻿@layout HomepageLayout
 @page "/"
 
-<div class="container bg-light rounded shadow my-3">
+    <div class="container bg-light rounded shadow my-3">
 
-    <div class="row h-50 align-items-center">
-        <div class="col-4 font-italic font-weight-bold pt-4"><h1 class="mb-0">OSK MANAGER</h1> </div>
-        <div class="col-3 text-left pt-4">Zadzwoń <br /> <h2><font color="ff0000"> +48 123 456 789</font> </h2></div>
-        <div class="col-2 pt-4 text-center">
-            Obesrwuj nas <br />
-            <a href="https://www.facebook.com/"><img src="https://facebookbrand.com/wp-content/uploads/2019/04/f_logo_RGB-Hex-Blue_512.png?w=512&h=512" alt="FB" height="30px" width="30px" style="margin-left:10px" /> </a>
-            <a href="https://www.instagram.com/"><img src="https://pluspng.com/img-png/instagram-png-instagram-png-logo-1455.png" alt="IG" height="30px" width="30px" style="margin-left:10px" /> </a>
-            <a href="https://mail.google.com/"><img src="https://pngimage.net/wp-content/uploads/2018/06/ikon-gmail-png-6.png" alt="G" height="30px" width="30px" style="margin-left:10px" /></a>
-
-
-        </div> 
-        <div class="col-3  pt-4 text-center banner4k ">
-            <a href="/login"><h4><font color="green"><b>Zaloguj się</b></font> <br /></h4></a>
-            <h7><font color="grey">lub<br /></font> </h7>
-            <a href="/registration"><h5><font color="blue">Zarejestruj</font></h5> </a>
+        <div class="row align-items-center">
+            <div class="col-4 font-italic font-weight-bold pt-4"><h1 class="mb-0 header header-h1">OSK MANAGER</h1> </div>
+            <div class="col-3 text-left pt-4">Zadzwoń <br /> <h2 class="header header--h2"> +48 123 456 789 </h2></div>
+            <div class="col-2 pt-4 text-center">
+                Obesrwuj nas <br />
+                <a href="https://www.facebook.com/"><img src="https://facebookbrand.com/wp-content/uploads/2019/04/f_logo_RGB-Hex-Blue_512.png?w=512&h=512" alt="FB" height="30px" width="30px" style="margin-left:10px" /> </a>
+                <a href="https://www.instagram.com/"><img src="https://pluspng.com/img-png/instagram-png-instagram-png-logo-1455.png" alt="IG" height="30px" width="30px" style="margin-left:10px" /> </a>
+                <a href="https://mail.google.com/"><img src="https://pngimage.net/wp-content/uploads/2018/06/ikon-gmail-png-6.png" alt="G" height="30px" width="30px" style="margin-left:10px" /></a>
+            </div>
+            <div class="col-3  pt-4 text-center banner4k ">
+                <a href="/login"><h4><font color="green"><b>Zaloguj się</b></font> <br /></h4></a>
+                <span class="divider">lub</span>
+                <a href="/registration"><h5><font color="blue">Zarejestruj</font></h5> </a>
+            </div>
         </div>
-        
+        <div class="row align-items-center second-row bg-dark">
+            <section id="second-row-menu" class="second-row-menu">
+                <nav>
+                    <ul>
+                        <li><a class="second-row-menu" href="#">Start</a></li>
+                        <li><a class="second-row-menu" href="#">Galeria</a></li>
+                        <li><a class="second-row-menu" href="#">Kontakt</a></li>
+                        <li><a class="second-row-menu" href="#">Cennik</a></li>
+                        <li><a class="second-row-menu" href="#">Zadaj pytanie</a></li>
+                    </ul>
+                </nav>
+            </section>
+
+        </div>
+        <div class="row align-items-center">
+            <section id="third-row-show" class="third-row-show">
+                <div class="third-row-show-image ">
+                    <img class="third-row-show-image" src="https://www.auto-zastepcze.eu/media/k2/items/cache/af2ef6a0e2c9c528b09655df79f3b312_XL.jpg" alt="Zdjęcie banerowe" />
+
+                </div>
+            </section>
+
+        </div>
+        <div class=" row align-items-center fourth-row">
+            <div class="col-md-2 fourth-row-first-column">
+                <img class="fourth-row-image" src="https://scontent.fktw1-1.fna.fbcdn.net/v/t1.0-1/44247805_1727577624015287_2122188987866021888_o.jpg?_nc_cat=103&_nc_sid=dbb9e7&_nc_ohc=aremjjOJIMYAX_NWtOS&_nc_ht=scontent.fktw1-1.fna&oh=8736baffb526dd1a5925ba60e28d7689&oe=5EEE1FDD" alt="Tu powinno być zdjęcie" />
+
+            </div>
+            <div class="col-md-10">Zdałem test w samochodzie Konrada po trzech testach wstępnych. Prowizorycznie jeździłem od prawie czterech lat, więc rozwinąłem sporo złych nawyków. Zwiedził mnie całym procesem i tego dnia czułem się bardzo pewny siebie. ”Brona Keogh - Dun Laoghaire, Dublin</div>
+
+        </div>
+        <div class=" row align-items-center fifth-row">
+            <div class="col-md-7">
+                <h4><b>Zdaj egzamin, dzięki naszej szkole jazdy!</b></h4>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam dignissim tempus leo,
+                vel laoreet massa congue at. Nullam dignissim ullamcorper quam, a condimentum nunc elementum eget.
+                Vestibulum mauris nisi, facilisis ac molestie in, mattis a arcu. Cras aliquam suscipit nisi. Pellentesque
+                vitae aliquam purus, ac consectetur ante.Praesent quis dictum libero. Aliquam non facilisis odio, aliquet
+                pulvinar augue. Sed at hendrerit metus. Phasellus pellentesque sollicitudin dignissim. Fusce sollicitudin
+                congue dapibus. Nunc egestas sit amet dolor eget gravida. Vestibulum convallis interdum turpis, vel sagittis
+                sem tempus et.
+            </div>
+            <div class="col-md-5 pt-2">
+                <img class="fifth-row-image" src="https://mir-s3-cdn-cf.behance.net/project_modules/max_632/2a4c1c96078793.5ea6892e2e29b.jpg" alt="Tu powinno być zdjęcie xD" />
+            </div>
+        </div>
+        <div class="row align-items-center fifth-row pt-2 ml-2">
+            <h4><b>Co kursanci cenią w nas najbadziej?</b></h4>
+        </div>
+
+        <div class="row align-items-center sixth-row pt-2 ">
+            <div class="col-md-4"><img class="icone" src="image/humor.png" />Super atmosfera</div>
+            <div class="col-md-4"><img class="icone" src="image/rules.png" />Poznanie wszystkich przepisów</div>
+            <div class="col-md-4"><img class="icone" src="/image/exam.png" />Przygotowanie do egzaminu</div>
+        </div>
+        <div class="row align-items-center sixth-row pt-2 ">
+            <div class="col-md-4"><img class="icone" src="image/write.png" />Szczegółowe podejście do sprawy</div>
+            <div class="col-md-4"><img class="icone" src="image/slip.png" />Szkolenie poślizgowe</div>
+            <div class="col-md-4"><img class="icone" src="image/time.png" />Podwózka pod egzamin</div>
+        </div>
+
+
     </div>
-    
-</div>
