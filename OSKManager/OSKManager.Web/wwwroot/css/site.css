@@ -173,6 +173,10 @@ nav{
     text-align: center;
     padding: 10px 0px;
 }
+.fifth-row-image {
+    max-height: 100%;
+    max-width: 100%;
+}
 
 .fourth-row-image {
     width: 300px;
