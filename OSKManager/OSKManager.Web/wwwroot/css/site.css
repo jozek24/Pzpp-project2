@@ -153,6 +153,39 @@ nav{
         color: green;
         font-size: 110%; /*do obczajenia czy ma sens*/
     }
+
+.third-row-show {
+    width: 100%;
+    text-align: center;
+}
+    .third-row-show-image {
+    min-height: 450px;
+    max-height: 600px;
+    min-width: 100%;
+    }
+
+.fourth-row {
+    background-color: #228B22;
+    color: white;
+}
+
+.fourth-row-first-column {
+    text-align: center;
+    padding: 10px 0px;
+}
+
+.fourth-row-image {
+    width: 300px;
+    height: 300px;
+    border-radius: 150px;
+    -webkit-border-radius: 150px;
+    -moz-border-radius: 150px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+    -webkit-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+    -moz-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+    max-height: 100px;
+    max-width: 100px;
+}
 #blazor-error-ui {
     background: lightyellow;
     bottom: 0;
