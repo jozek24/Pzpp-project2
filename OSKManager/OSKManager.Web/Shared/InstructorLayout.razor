@@ -1,0 +1,11 @@
+﻿@inherits LayoutComponentBase
+
+<AuthorizeView Roles="Instructor">
+
+    <Authorized>
+        @Body
+    </Authorized>
+    <NotAuthorized>
+        <a href="Login">Logowanie</a>
+    </NotAuthorized>
+</AuthorizeView>
