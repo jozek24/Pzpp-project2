@@ -198,17 +198,37 @@ nav{
 .sixth-row {
     background-color: #B1FBFF;
 }
+.footer{
+    color:white;
+}
+.footer-first-column ul {
+    list-style-type: none;
+    margin-top: 2px;
+}
+    .footer-first-column ul li{
+        padding-top:25px;
+    }
+    #blazor-error-ui {
+        background: lightyellow;
+        bottom: 0;
+        box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.2);
+        display: none;
+        left: 0;
+        padding: 0.6rem 1.25rem 0.7rem 1.25rem;
+        position: fixed;
+        width: 100%;
+        z-index: 1000;
+    }
 
-#blazor-error-ui {
-    background: lightyellow;
-    bottom: 0;
-    box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.2);
-    display: none;
-    left: 0;
-    padding: 0.6rem 1.25rem 0.7rem 1.25rem;
-    position: fixed;
-    width: 100%;
-    z-index: 1000;
+.footer-icon{
+    max-height:40px;
+    max-width:40px;
+    margin-top:20px;
+    margin-right:20px;
+}
+.footer-firth-column-maps{
+    min-height:300px;
+    min-width:350px;
 }
 
 #blazor-error-ui .dismiss {
