@@ -5,6 +5,7 @@
 @using Microsoft.AspNetCore.Identity
 @using OSKManager.Web.Pages.AdministratorPages
 @using OSKManager.Web.Pages.ClientPages
+@using OSKManager.Web.Pages.InstructorPages
 
 @inject IAuthService AuthService
 @inject NavigationManager NavigationManager
@@ -58,11 +59,11 @@
 
             if (user.HasClaim(ClaimTypes.Role, "Student"))
 
-                NavigationManager.NavigateTo(nameof(CilentPanel));
+                NavigationManager.NavigateTo(nameof(ClientPanel));
 
             if (user.HasClaim(ClaimTypes.Role, "Instructor"))
 
-                NavigationManager.NavigateTo("/instructorpanel");
+                NavigationManager.NavigateTo(nameof(InstructorPanel));
         }
         else
         {

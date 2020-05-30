@@ -1,11 +1,16 @@
 ﻿@inherits LayoutComponentBase
+@attribute [Authorize(Roles = "Instructor")]
 
-<AuthorizeView Roles="Instructor">
+<div class="sidebar">
+    <AdminMenu />
+</div>
 
-    <Authorized>
+<div class="main">
+    <div class="top-row px-4">
+        <LoginDisplay />
+    </div>
+
+    <div class="content px-4">
         @Body
-    </Authorized>
-    <NotAuthorized>
-        <a href="Login">Logowanie</a>
-    </NotAuthorized>
-</AuthorizeView>
+    </div>
+</div>
