@@ -1,6 +1,11 @@
 ﻿@page "/login"
 @using OSKManager.Web.Services
 @using OSKManager.Model.AuthenticationModels
+@using System.Security.Claims
+@using Microsoft.AspNetCore.Identity
+@using OSKManager.Web.Pages.AdministratorPages
+@using OSKManager.Web.Pages.ClientPages
+@using OSKManager.Web.Pages.InstructorPages
 
 @inject IAuthService AuthService
 @inject NavigationManager NavigationManager
@@ -31,6 +36,8 @@
 </EditForm>
 
 @code {
+    [CascadingParameter]
+    private Task<AuthenticationState> authenticationStateTask { get; set; }
 
     private LoginModel loginModel = new LoginModel();
     private bool ShowErrors;
@@ -41,13 +48,22 @@
         ShowErrors = false;
 
         var result = await AuthService.Login(loginModel);
-
+        
         if (result.Successful)
         {
-           
-                NavigationManager.NavigateTo("/clientPanel");
-        
-          
+            var authState = await authenticationStateTask;
+            var user = authState.User;
+
+            if (user.HasClaim(ClaimTypes. Role, "Administrator"))
+                NavigationManager.NavigateTo(nameof(AdminPanel));
+
+            if (user.HasClaim(ClaimTypes.Role, "Student"))
+
+                NavigationManager.NavigateTo(nameof(ClientPanel));
+
+            if (user.HasClaim(ClaimTypes.Role, "Instructor"))
+
+                NavigationManager.NavigateTo(nameof(InstructorPanel));
         }
         else
         {
@@ -55,5 +71,4 @@
             ShowErrors = true;
         }
     }
-
 }

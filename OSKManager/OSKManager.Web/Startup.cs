@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using OSKManager.Model;
 using OSKManager.Web.Data;
 using OSKManager.Web.Handlers;
 using OSKManager.Web.Services;
@@ -77,6 +78,7 @@ namespace OSKManager.Web
                 endpoints.MapBlazorHub();
                 endpoints.MapFallbackToPage("/_Host");
             });
+            
         }
     }
 }
