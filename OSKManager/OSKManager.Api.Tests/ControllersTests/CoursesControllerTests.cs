@@ -18,6 +18,7 @@ namespace OSKManager.Api.Tests.ControllersTests
     {
         private readonly Mock<IRepositoryService<Course>> _mockRepo;
         private readonly CoursesController _controller;
+
         public CoursesControllerTests()
         {
             _mockRepo = new Mock<IRepositoryService<Course>>();
@@ -42,6 +43,25 @@ namespace OSKManager.Api.Tests.ControllersTests
             Assert.Equal(StatusCodes.Status200OK, result.StatusCode);
         }
 
+
+
+        [Fact]
+        public void GetCourse_WhenCalled_ReturnCourse()
+        {
+            ////Arrange
+            var course = new Course { Id = Guid.NewGuid() };
+            _mockRepo.Setup(repo => repo.GetSingle(course.Id))
+                .Returns(Task.FromResult(course));
+
+            //Act
+            var actionResult = _controller.GetCourse(course.Id);
+            var result = actionResult.Result.Result as ObjectResult;
+
+            //Assert
+            Assert.Equal(course, actionResult.Result);
+            Assert.True(result is OkObjectResult);
+            Assert.Equal(StatusCodes.Status200OK, result.StatusCode);
+        }
     }
 
 }
