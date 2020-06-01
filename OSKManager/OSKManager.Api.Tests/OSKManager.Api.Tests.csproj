@@ -19,8 +19,4 @@
     <ProjectReference Include="..\OSKManager.Model\OSKManager.Model.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="ControllersTests\" />
-  </ItemGroup>
-
 </Project>
