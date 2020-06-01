@@ -17,6 +17,7 @@ namespace OSKManager.Model
 
         public Guid CategoryId { get; set; }
         public Category Category { get; set; }
+        public bool IsStarted { get; set; }
 
     }
 }

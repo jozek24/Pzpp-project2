@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using OSKManager.Model;
 using OSKManager.Web.Data;
 using OSKManager.Web.Handlers;
 using OSKManager.Web.Services;
@@ -36,6 +37,10 @@ namespace OSKManager.Web
 
             services.AddTransient<ValidateHeaderHandler>();
 
+            services.AddHttpClient<ICourseService, CourseService>(client =>
+            {
+                client.BaseAddress = new Uri("https://localhost:44334/");
+            });
             services.AddHttpClient<IAuthService, AuthService>("servicsdcdfs", x =>
             {
                 x.BaseAddress = new Uri("https://localhost:5003/");
@@ -73,6 +78,7 @@ namespace OSKManager.Web
                 endpoints.MapBlazorHub();
                 endpoints.MapFallbackToPage("/_Host");
             });
+            
         }
     }
 }

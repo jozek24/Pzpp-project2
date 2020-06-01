@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using OSKManager.Model;
 
 namespace OSKManager.Api.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200525113909_ChangeInstructorsRoleName")]
+    partial class ChangeInstructorsRoleName
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -46,21 +48,21 @@ namespace OSKManager.Api.Migrations
                         new
                         {
                             Id = "7D9B7113-A8F8-4035-99A7-A20DD400F6A3",
-                            ConcurrencyStamp = "18b954d5-2a64-4510-8b1b-10e1a2f8df57",
+                            ConcurrencyStamp = "9b54d771-387f-45ee-94d7-bc0d30676fe9",
                             Name = "Student",
                             NormalizedName = "STUDENT"
                         },
                         new
                         {
                             Id = "78A7570F-3CE5-48BA-9461-80283ED1D94D",
-                            ConcurrencyStamp = "bd442e70-b9a2-411c-9838-4861e11374c2",
+                            ConcurrencyStamp = "2e58027a-a2e5-491d-b207-7a3fa94e41d1",
                             Name = "Instructor",
                             NormalizedName = "INSTRUCTOR"
                         },
                         new
                         {
                             Id = "2301D884-221A-4E7D-B509-0113DCC043E1",
-                            ConcurrencyStamp = "4b2f0851-4ee4-4cd6-a0e9-91e28a4aff69",
+                            ConcurrencyStamp = "ed29c4dd-bb54-4b71-9f1e-61485757120c",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         });
@@ -234,7 +236,7 @@ namespace OSKManager.Api.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("ce9f8591-dc17-4b23-b6a1-0c39e8170175"),
+                            Id = new Guid("d68a51f5-9f62-4de4-be09-85cb77d1e592"),
                             BasicPrice = 1500m,
                             CountOfDrivingHours = 20,
                             CountOfLectureHours = 30,
@@ -243,7 +245,7 @@ namespace OSKManager.Api.Migrations
                         },
                         new
                         {
-                            Id = new Guid("e87aaa53-c407-4712-ac8d-a02718878821"),
+                            Id = new Guid("7fba1061-11da-4088-a5f3-05c4752a5e5b"),
                             BasicPrice = 1700m,
                             CountOfDrivingHours = 30,
                             CountOfLectureHours = 30,
@@ -252,7 +254,7 @@ namespace OSKManager.Api.Migrations
                         },
                         new
                         {
-                            Id = new Guid("91e4a1d6-daf5-4a47-bb7e-f07c0291e4bc"),
+                            Id = new Guid("9f7a263a-0bd7-4e9b-950e-6cbc67e05e32"),
                             BasicPrice = 2600m,
                             CountOfDrivingHours = 30,
                             CountOfLectureHours = 20,
@@ -261,7 +263,7 @@ namespace OSKManager.Api.Migrations
                         },
                         new
                         {
-                            Id = new Guid("822c18da-a7e7-4b2b-8a2a-36fef457ef81"),
+                            Id = new Guid("08dbea48-13e4-4bf6-89e7-475aeb96c8dc"),
                             BasicPrice = 4800m,
                             CountOfDrivingHours = 60,
                             CountOfLectureHours = 20,
@@ -291,25 +293,17 @@ namespace OSKManager.Api.Migrations
                     b.Property<int>("FinishedLectureHours")
                         .HasColumnType("int");
 
-                    b.Property<bool>("IsStarted")
-                        .HasColumnType("tinyint(1)");
-
                     b.Property<string>("Name")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("StudentId")
                         .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
 
-                    b.Property<Guid?>("WorkClassId")
-                        .HasColumnType("char(36)");
-
                     b.HasKey("Id");
 
                     b.HasIndex("CategoryId");
 
                     b.HasIndex("StudentId");
-
-                    b.HasIndex("WorkClassId");
 
                     b.ToTable("Courses");
                 });
@@ -333,17 +327,6 @@ namespace OSKManager.Api.Migrations
                     b.ToTable("DrivingDate");
                 });
 
-            modelBuilder.Entity("OSKManager.Model.Entities.WorkClass", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("char(36)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("WorkClasses");
-                });
-
             modelBuilder.Entity("OSKManager.Model.LectureDate", b =>
                 {
                     b.Property<Guid>("Id")
@@ -356,14 +339,9 @@ namespace OSKManager.Api.Migrations
                     b.Property<DateTime>("DateTime")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<Guid?>("WorkClassId")
-                        .HasColumnType("char(36)");
-
                     b.HasKey("Id");
 
                     b.HasIndex("CourseId");
-
-                    b.HasIndex("WorkClassId");
 
                     b.ToTable("LectureDate");
                 });
@@ -489,7 +467,7 @@ namespace OSKManager.Api.Migrations
                         {
                             Id = "B22698B8-42A2-4115-9631-1C2D1E2AC5F7",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "69a3d32d-e5ae-4b50-8061-1db12c696c80",
+                            ConcurrencyStamp = "39665189-e90d-457f-9855-33963c879543",
                             Email = "Admin@Admin.com",
                             EmailConfirmed = false,
                             FirstName = "Master",
@@ -498,7 +476,7 @@ namespace OSKManager.Api.Migrations
                             LockoutEnabled = true,
                             NormalizedEmail = "ADMIN@ADMIN.COM",
                             NormalizedUserName = "ADMIN@ADMIN.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAECD0KqauWlg9lDQ1kHf7qqKP7xYzHmoTwu9ggVexGwI5ZXsTj+YWaxhyhzIjITlWAQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEDHiguz0bGppyJwrZu1bby3A4KDzkDGsFcWBbiAweD1cGQIBRSYKPgPdqfys1WUOow==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "00000000-0000-0000-0000-000000000000",
                             TwoFactorEnabled = false,
@@ -512,11 +490,6 @@ namespace OSKManager.Api.Migrations
 
                     b.Property<DateTime?>("LicenceExpireTime")
                         .HasColumnType("datetime(6)");
-
-                    b.Property<Guid?>("WorkClassId")
-                        .HasColumnType("char(36)");
-
-                    b.HasIndex("WorkClassId");
 
                     b.HasDiscriminator().HasValue("Instructor");
                 });
@@ -608,10 +581,6 @@ namespace OSKManager.Api.Migrations
                     b.HasOne("OSKManager.Model.Student", null)
                         .WithMany("Courses")
                         .HasForeignKey("StudentId");
-
-                    b.HasOne("OSKManager.Model.Entities.WorkClass", null)
-                        .WithMany("Courses")
-                        .HasForeignKey("WorkClassId");
                 });
 
             modelBuilder.Entity("OSKManager.Model.DrivingDate", b =>
@@ -630,10 +599,6 @@ namespace OSKManager.Api.Migrations
                         .HasForeignKey("CourseId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.HasOne("OSKManager.Model.Entities.WorkClass", null)
-                        .WithMany("DateOfLecture")
-                        .HasForeignKey("WorkClassId");
                 });
 
             modelBuilder.Entity("OSKManager.Model.PkkNumber", b =>
@@ -648,13 +613,6 @@ namespace OSKManager.Api.Migrations
                     b.HasOne("OSKManager.Model.Address", "Address")
                         .WithMany()
                         .HasForeignKey("AddressId");
-                });
-
-            modelBuilder.Entity("OSKManager.Model.Instructor", b =>
-                {
-                    b.HasOne("OSKManager.Model.Entities.WorkClass", null)
-                        .WithMany("Instructors")
-                        .HasForeignKey("WorkClassId");
                 });
 
             modelBuilder.Entity("OSKManager.Model.Student", b =>

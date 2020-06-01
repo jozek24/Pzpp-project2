@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using OSKManager.Model.Configuration;
+using OSKManager.Model.Entities;
 
 namespace OSKManager.Model
 {
@@ -17,6 +18,8 @@ namespace OSKManager.Model
 
             modelBuilder.ApplyConfiguration(new CategoryConfiguration());
             modelBuilder.ApplyConfiguration(new RoleConfiguration());
+            modelBuilder.ApplyConfiguration(new AdministratorAccountConfiguration());
+            modelBuilder.ApplyConfiguration(new UsersWithRolesConfiguration());
 
         }
 
@@ -24,5 +27,8 @@ namespace OSKManager.Model
         public DbSet<Course> Courses { get; set; }
         public DbSet<Instructor> Instructors { get; set; }
         public DbSet<Student> Students{ get; set; }
+        public DbSet<WorkClass> WorkClasses{ get; set; }
+
+
     }
 }

@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
@@ -16,6 +16,10 @@
   <ItemGroup>
     <ProjectReference Include="..\OSKManager.Api\OSKManager.Api.csproj" />
     <ProjectReference Include="..\OSKManager.Model\OSKManager.Model.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="ControllersTests\" />
   </ItemGroup>
 
 </Project>

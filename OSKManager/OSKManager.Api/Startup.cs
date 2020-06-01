@@ -31,7 +31,7 @@ namespace OSKManager.Api
             services.AddAutoMapper(typeof(Startup));
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseMySql(Configuration.GetConnectionString("sqlConnection"),
-                    opts=>opts.MigrationsAssembly("OSKManager.Api")));
+                    opts => opts.MigrationsAssembly("OSKManager.Api")));
 
             services.AddIdentity<User, IdentityRole>(opt =>
             {
