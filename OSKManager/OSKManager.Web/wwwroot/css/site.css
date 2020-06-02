@@ -7,9 +7,11 @@ html, body {
 a, .btn-link {
     color: #0366d6;
 }
+
 .banner4k a {
     text-decoration: none;
 }
+
 .btn-primary {
     color: #fff;
     background-color: #1b6ec2;
@@ -43,10 +45,10 @@ app {
             margin-left: 1.5rem;
         }
 
-.main .top-row a:first-child {
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
+        .main .top-row a:first-child {
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
 
 .sidebar {
     background-image: linear-gradient(180deg, rgb(5, 39, 103) 0%, #3a0647 70%);
@@ -118,20 +120,22 @@ app {
 .validation-message {
     color: red;
 }
-.divider{
-    display:block;
+
+.divider {
+    display: block;
     margin: 10px 0;
     color: gray;
 }
 
-nav{
-
-    width:100%;
+nav {
+    width: 100%;
 }
-    nav li{
-        display:inline-block;
+
+    nav li {
+        display: inline-block;
         padding: 24px 70px;
     }
+
         nav li a {
             font-size: 14px;
             color: #757575;
@@ -148,6 +152,7 @@ nav{
     text-decoration: none;
     color: #fff;
 }
+
     .second-row-menu a:hover, second-row-menu a:active {
         text-decoration: none;
         color: green;
@@ -158,11 +163,14 @@ nav{
     width: 100%;
     text-align: center;
 }
-    .third-row-show-image {
-    min-height: 450px;
+
+.third-row-show-image {
+    min-height: 600px;
     max-height: 600px;
     min-width: 100%;
-    }
+}
+
+
 
 .fourth-row {
     background-color: #228B22;
@@ -173,6 +181,7 @@ nav{
     text-align: center;
     padding: 10px 0px;
 }
+
 .fourth-row-image {
     width: 300px;
     height: 300px;
@@ -189,8 +198,8 @@ nav{
 .fifth-row-image {
     max-height: 100%;
     max-width: 100%;
-    
 }
+
 .icone {
     max-height: 50px;
     max-width: 50px;
@@ -200,37 +209,42 @@ nav{
 .sixth-row {
     background-color: #B1FBFF;
 }
-.footer{
-    color:white;
+
+.footer {
+    color: white;
 }
+
 .footer-first-column ul {
     list-style-type: none;
     margin-top: 2px;
 }
-    .footer-first-column ul li{
-        padding-top:25px;
-    }
-    #blazor-error-ui {
-        background: lightyellow;
-        bottom: 0;
-        box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.2);
-        display: none;
-        left: 0;
-        padding: 0.6rem 1.25rem 0.7rem 1.25rem;
-        position: fixed;
-        width: 100%;
-        z-index: 1000;
+
+    .footer-first-column ul li {
+        padding-top: 25px;
     }
 
-.footer-icon{
-    max-height:40px;
-    max-width:40px;
-    margin-top:20px;
-    margin-right:20px;
+#blazor-error-ui {
+    background: lightyellow;
+    bottom: 0;
+    box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.2);
+    display: none;
+    left: 0;
+    padding: 0.6rem 1.25rem 0.7rem 1.25rem;
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
 }
-.footer-firth-column-maps{
-    min-height:300px;
-    min-width:350px;
+
+.footer-icon {
+    max-height: 40px;
+    max-width: 40px;
+    margin-top: 20px;
+    margin-right: 20px;
+}
+
+.footer-firth-column-maps {
+    min-height: 300px;
+    min-width: 350px;
 }
 
 #blazor-error-ui .dismiss {
@@ -285,6 +299,7 @@ nav{
         display: block;
     }
 }
+
 * {
     box-sizing: border-box;
 }
@@ -339,4 +354,3 @@ nav{
         width: 100%;
     }
 }
-
