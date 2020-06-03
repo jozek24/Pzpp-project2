@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
 
 
@@ -33,18 +34,22 @@ namespace OSKManager.Web.Services
 
         public async Task<IEnumerable<Category>> GetCategories()
         {
+           
+            var token = await _localStorageService.GetItemAsync<string>("authToken");
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);      
             return await _httpClient.GetJsonAsync<Category[]>($"api/category");
         }
 
         public async Task<Category> GetCategory(Guid id)
         {
-         //   var requestMessage = new HttpRequestMessage(HttpMethod.Get, $"api/categories/{id}");
-            return await _httpClient.GetJsonAsync<Category>($"api/categories/{id}", );
+       
+           
+            return await _httpClient.GetJsonAsync<Category>($"api/category/{id}");
         }
 
         public async Task<Category> UpdateCategory(Category updatedCategory)
         {
-            return await _httpClient.PutJsonAsync<Category>("api/categories", updatedCategory);
+            return await _httpClient.PutJsonAsync<Category>("api/category", updatedCategory);
         }
     }
 }
