@@ -12,16 +12,17 @@ namespace OSKManager.Web.Pages.ClientPages
 {
     public class SingUpCursBase : ComponentBase
     {
-        //[Inject]
-        //public ICategoryService CategoryService { get; set; }
+        [Inject]
+        public ICategoryService CategoryService { get; set; }
+        public List<Category> CategoryList { get; set; }
+       
+        protected async override Task OnInitializedAsync()
+        {
+                     
+            //CategoryList = (await CategoryService.GetCategories()).ToList();
+            CategoryList=(await CategoryService.GetCategories()).ToList();
 
-        //public List<Category> CategoryList { get; set; } = new List<Category>();
-        //protected async override Task OnInitializedAsync()
-        //{
-
-        //    CategoryList = (await CategoryService.GetCategories()).ToList();
-
-        //    Category category = new Category();
-        //}
+            
+        }
     }
 }
