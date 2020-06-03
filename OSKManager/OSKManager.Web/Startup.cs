@@ -45,6 +45,10 @@ namespace OSKManager.Web
             {
                 x.BaseAddress = new Uri("https://localhost:5003/");
             });
+            services.AddHttpClient<ICategoryService, CategoryService>(client =>
+            {
+                client.BaseAddress = new Uri("https://localhost:5003/");
+            }).AddHttpMessageHandler<ValidateHeaderHandler>();
 
             services.AddScoped<AuthenticationStateProvider, ApiAuthenticationStateProvider>();
 

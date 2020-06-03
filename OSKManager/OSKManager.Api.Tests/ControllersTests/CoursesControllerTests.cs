@@ -41,6 +41,17 @@ namespace OSKManager.Api.Tests.ControllersTests
             Assert.True(result is OkObjectResult);
             Assert.Equal(StatusCodes.Status200OK, result.StatusCode);
         }
+        [Fact]
+        public void CreateCourse_ActionExecutes_ReturnsBadRequest()
+        {
+            Course course = null;
+            var actionResult = _controller.CreateCourse(course);
+            var result = actionResult.Result.Result as BadRequestResult;
+            Assert.NotNull(result);
+            Assert.IsType<BadRequestResult>(result);
+            Assert.Equal(StatusCodes.Status400BadRequest, result.StatusCode);
+
+        }
     }
 }
 
