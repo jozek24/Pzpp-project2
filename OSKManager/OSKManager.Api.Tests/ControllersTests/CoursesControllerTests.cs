@@ -41,9 +41,7 @@ namespace OSKManager.Api.Tests.ControllersTests
             Assert.True(result is OkObjectResult);
             Assert.Equal(StatusCodes.Status200OK, result.StatusCode);
         }
-
     }
-
 }
 
 
