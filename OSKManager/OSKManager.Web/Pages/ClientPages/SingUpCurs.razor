@@ -5,15 +5,18 @@
 @using OSKManager.Model
 
 
-@if (Courses == null)
+@*@if (CategoryList == null)
 {
 
 }
 else
 	{
-	         @foreach (var item in Courses)
+	         @foreach (var item in CategoryList)
              {
-				 @item.Name
+				 @item.LongCategoryName
              }
+	
 
-	}
+	}*@
+
+

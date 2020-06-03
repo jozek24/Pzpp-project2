@@ -5,7 +5,7 @@
     @*<button class="btn btn-primary" @onclick="CursesList">Wyświetl kursy</button>*@
     <div class="container">
         <div class="row">
-
+            @kurs
             @foreach (var item in listOfCurses)
             {
                 <div class="col-4">
@@ -24,13 +24,13 @@
 {
     string kurs;
     public List<OSKManager.Model.Student> listOfCurses = new List<OSKManager.Model.Student>();
- 
-    
+
+
     protected override async Task OnInitializedAsync()
     {
 
-       //Zczytanie listy kursów z obiektu student
-       
+        kurs = "Kurs";
+
     }
 
 }
