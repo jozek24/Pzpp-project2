@@ -58,7 +58,6 @@
                 NavigationManager.NavigateTo(nameof(AdminPanel));
 
             if (user.HasClaim(ClaimTypes.Role, "Student"))
-
                 NavigationManager.NavigateTo(nameof(ClientPanel));
 
             if (user.HasClaim(ClaimTypes.Role, "Instructor"))
