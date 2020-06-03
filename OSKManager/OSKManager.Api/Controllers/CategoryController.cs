@@ -12,6 +12,7 @@ namespace OSKManager.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+   
     public class CategoryController : ControllerBase
     {
         private readonly IRepositoryService<Category> repositoryService;
