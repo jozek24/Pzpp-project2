@@ -84,7 +84,7 @@ namespace OSKManager.Api.Controllers
             try
             {
                 var result = await repositoryService.GetSingle(id);
-
+                
                 if (result == null)
                 {
                     return NotFound();

@@ -27,5 +27,7 @@ namespace OSKManager.Api.Models
         [DataType(DataType.Password)]
         [Compare(nameof(Password),ErrorMessage = "Hasła nie są zgodne.")]
         public string ConfirmPassword { get; set; }
+
+        public string TypeOfRole { get; set; }
     }
 }
