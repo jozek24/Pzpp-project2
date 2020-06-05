@@ -19,7 +19,7 @@ namespace OSKManager.Web.Services
         public CategoryService(HttpClient httpClient, ILocalStorageService localStorageService)
         {
             _httpClient = httpClient;
-           _localStorageService = localStorageService;
+            _localStorageService = localStorageService;
         }
 
         public async Task<Category> CreateCategory(Category newCategory)
@@ -34,16 +34,15 @@ namespace OSKManager.Web.Services
 
         public async Task<IEnumerable<Category>> GetCategories()
         {
-           
             var token = await _localStorageService.GetItemAsync<string>("authToken");
-            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);      
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", token);
             return await _httpClient.GetJsonAsync<Category[]>($"api/category");
         }
 
         public async Task<Category> GetCategory(Guid id)
         {
-       
-           
+
+
             return await _httpClient.GetJsonAsync<Category>($"api/category/{id}");
         }
 

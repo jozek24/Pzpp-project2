@@ -12,7 +12,7 @@ namespace OSKManager.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-   
+    [Authorize(Roles = "Student")]
     public class CategoryController : ControllerBase
     {
         private readonly IRepositoryService<Category> repositoryService;
@@ -23,7 +23,6 @@ namespace OSKManager.Api.Controllers
         }
 
         [HttpGet]
-        
         public async Task<ActionResult> GetCategories()
         {
             try
