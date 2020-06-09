@@ -1,0 +1,78 @@
+﻿
+@*@inject ICalendarEventsProvider eventsProvider*@
+@using OSKManager.Web.Model
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Blazor Calendar</title>
+        <!-- Bootstrap -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+              integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+        <link href="css/app.css" rel="stylesheet" />
+
+        <!-- Fluent UI Style -->
+        <link rel="stylesheet" href="https://static2.sharepointonline.com/files/fabric/office-ui-fabric-core/11.0.0/css/fabric.min.css" />
+    </head>
+
+<!-- Add Event -->
+<div class="ms-depth-16 card">
+    <EditForm model="model" OnValidSubmit="AddEventToSelectedDay">
+        <div class="calendar-toolbar">
+            <button class="toolbar-button" type="submit"><i class="ms-Icon ms-Icon--AddEvent"></i></button>
+        </div>
+
+        <div class="card-content">
+            <h3 class="ms-fontSize-24 ms-fontWeight-regular">@SelectedDay.Date.ToString("D")</h3>
+            <input type="text" @bind-value="model.Subject" class="fluent-input" placeholder="Temat wydarzenia">
+            <input type="time" @bind-value="model.StartDate" class="fluent-input" placeholder="Event Subject">
+            <input type="time" @bind-value="model.EndDate" class="fluent-input" placeholder="Event Subject">
+        </div>
+    </EditForm>
+</div>
+
+@code{
+    [Parameter]
+    public CalendarDay SelectedDay { get; set; }
+
+    private CalendarEvent model = new CalendarEvent();
+
+    private async Task AddEventToSelectedDay()
+    {
+        // Convert the time to the a new date within the selected day
+        model.StartDate = new DateTime(SelectedDay.Date.Year,
+                                        SelectedDay.Date.Month,
+                                        SelectedDay.Date.Day,
+                                        model.StartDate.Hour,
+                                        model.StartDate.Minute,
+                                        0);
+
+        model.EndDate = new DateTime(SelectedDay.Date.Year,
+                                        SelectedDay.Date.Month,
+                                        SelectedDay.Date.Day,
+                                        model.EndDate.Hour,
+                                        model.EndDate.Minute,
+                                        0);
+
+        if (SelectedDay.Events == null)
+            SelectedDay.Events = new List<CalendarEvent>();
+
+        var calendarEvent = new CalendarEvent
+        {
+            Subject = model.Subject,
+            StartDate = model.StartDate,
+            EndDate = model.EndDate
+        };
+        SelectedDay.Events.Add(calendarEvent);
+        OnEventAdded.Invoke();
+        // TODO: Push the event to the API
+        //await eventsProvider.AddEventAsync(calendarEvent);
+
+        Console.WriteLine($"Total Events in Day {SelectedDay.Events.Count} | {model.Subject} | {model.StartDate} | {model.EndDate}");
+
+        model = new CalendarEvent();
+    }
+
+    public static event Action OnEventAdded = () => { };
+}
