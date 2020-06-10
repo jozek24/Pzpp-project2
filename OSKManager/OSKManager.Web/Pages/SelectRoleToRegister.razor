@@ -1,0 +1,30 @@
+﻿@using OSKManager.Web.Services.AdminServices
+
+<select class="form-control col-3" @onchange="OnChangeEvent">
+    @if (@Roles != null)
+    {
+        <option value="">select city..</option>
+        @foreach (var city in Roles)
+        {
+            <option value="@city">@city</option>
+        }
+    }
+</select>
+
+@code {    
+    [Parameter]
+    public EventCallback<ChangeEventArgs> OnChangeEvent { get; set; }
+
+    public string[] Roles { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender && Roles == null)
+        {
+            var db = new CommunicationWithDb();
+            Roles = db.GetNameOfRolesFromDb();
+
+            StateHasChanged();
+        }
+    }
+}
