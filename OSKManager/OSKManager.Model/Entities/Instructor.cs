@@ -12,11 +12,5 @@ namespace OSKManager.Model
         public ICollection<Student> Students { get; set; }
 
         public ICollection<InstructorsCategory> InstructorsCategories { get; set; }
-        //public virtual ICollection<Category> CategoryPermissions { get; set; }
-
-        //public Instructor()
-        //{
-        //    CategoryPermissions = new HashSet<Category>();
-        //}
     }
 }

@@ -24,11 +24,5 @@ namespace OSKManager.Model
         public int CountOfDrivingHours { get; set; }
 
         public ICollection<InstructorsCategory> InstructorsCategories { get; set; }
-        //public virtual ICollection<Instructor> Instructors { get; set; }
-        //public Category()
-        //{
-        //    Instructors=new HashSet<Instructor>();
-        //}
-
     }
 }
