@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using OSKManager.Model.Entities;
 
 namespace OSKManager.Model
 {
@@ -20,5 +22,13 @@ namespace OSKManager.Model
         public int CountOfLectureHours { get; set; }
 
         public int CountOfDrivingHours { get; set; }
+
+        public ICollection<InstructorsCategory> InstructorsCategories { get; set; }
+        //public virtual ICollection<Instructor> Instructors { get; set; }
+        //public Category()
+        //{
+        //    Instructors=new HashSet<Instructor>();
+        //}
+
     }
 }
