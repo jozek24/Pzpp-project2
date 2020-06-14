@@ -52,6 +52,11 @@ namespace OSKManager.Web
                 client.BaseAddress = new Uri("https://localhost:5003/");
             }).AddHttpMessageHandler<ValidateHeaderHandler>();
 
+            services.AddHttpClient<IWorkClassService, WorkClassService>(client =>
+            {
+                client.BaseAddress = new Uri("https://localhost:5003/");
+            });
+
             services.AddSingleton<HttpClient>();
         }
 
