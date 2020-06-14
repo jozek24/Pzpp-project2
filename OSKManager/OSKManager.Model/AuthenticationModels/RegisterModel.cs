@@ -29,5 +29,6 @@ namespace OSKManager.Api.Models
         public string ConfirmPassword { get; set; }
 
         public string TypeOfRole { get; set; }
+
     }
 }
