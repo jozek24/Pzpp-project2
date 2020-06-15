@@ -21,9 +21,18 @@ namespace OSKManager.Api.Models
 
         public async Task<T> Add(T entity)
         {
-            var result = await _set.AddAsync(entity);
-            await _context.SaveChangesAsync();
-            return result.Entity;
+            try
+            {
+                var result = await _set.AddAsync(entity);
+                 _context.SaveChanges();
+                return result.Entity;
+            }
+            catch (Exception e)
+            {
+
+                throw;
+            }
+           
         }
 
         public async Task<T> Delete(T entity)
