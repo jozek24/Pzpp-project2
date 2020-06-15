@@ -21,20 +21,6 @@
 </head>
 
 <div class="row">
-    @if (Categories == null)
-    {
-        <div class="spinner"></div>
-    }
-    else
-    {
-        <select>
-            @foreach (var category in Categories)
-	        {
-		        <option>@category.ShortCategory</option>
-	        }
-        </select>
-    }
-
 
     <!-- Calendar -->
     <div class="col-sm-12 col-md-12 col-lg-9">
