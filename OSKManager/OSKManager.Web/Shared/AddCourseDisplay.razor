@@ -1,0 +1,22 @@
+﻿@inherits AddCourseDisplayBase
+
+<div class=" card m-5">
+    <div class=" card-header" @onclick="CourseDetails">
+        <img class=" card-img-top imageThuumbnail" src="/Images/curseIcon.png">
+         <center> Kategoria: @ShortCategory</center>
+        <br />
+        
+        <h7>
+            <center><button type="submit" class="form-control col-12 btn btn-primary" @onclick="CourseDetails">Szczegóły</button><br /></center>
+            @lectureText<br />
+            @driveText<br />
+            @priceText
+        <NavLink class="nav-link" href="addCourse">
+            <center><button type="submit" class="form-control col-6 btn btn-primary" @onclick="SingUpCourse">Zapisz się</button></center>
+        </NavLink>
+        
+        </h7>
+
+        </div>
+      
+</div>
