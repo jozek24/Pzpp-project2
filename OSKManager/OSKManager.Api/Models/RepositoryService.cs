@@ -24,7 +24,7 @@ namespace OSKManager.Api.Models
             try
             {
                 var result = await _set.AddAsync(entity);
-                 _context.SaveChanges();
+                await _context.SaveChangesAsync();
                 return result.Entity;
             }
             catch (Exception e)
