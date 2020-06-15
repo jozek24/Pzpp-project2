@@ -147,7 +147,11 @@ nav {
     width: 100%;
     text-decoration: none;
 }
-
+.first-row-media-icons {
+    max-height: 30px;
+    max-width: 30px;
+    margin-left: 10px
+}
 .second-row-menu a {
     text-decoration: none;
     color: #fff;
