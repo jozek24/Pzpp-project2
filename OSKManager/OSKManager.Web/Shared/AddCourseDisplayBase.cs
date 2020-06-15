@@ -48,7 +48,7 @@ namespace OSKManager.Web.Shared
         protected async Task SingUpCourse()
         {
             Course course = new Course();
-            course.Category = Category;
+            //course.Category = Category;
             course.ActualPrice = Category.BasicPrice;
             course.CategoryId = Category.Id;
             course.FinishedDrivingHours = 0;
