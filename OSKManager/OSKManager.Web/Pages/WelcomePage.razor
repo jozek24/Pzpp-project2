@@ -3,7 +3,7 @@
 
     <div class="container bg-light rounded shadow my-3">
 
-        <div class="row align-items-center first-row">
+        <div class="row align-items-center first-row" id="start">
             <div class="col-4 font-italic font-weight-bold pt-4"><h1 class="mb-0 header header-h1">OSK MANAGER</h1> </div>
             <div class="col-3 text-left pt-4">Zadzwoń <br /> <h2 class="header header--h2"> +48 123 456 789 </h2></div>
             <div class="col-2 pt-4 text-center">
@@ -22,17 +22,17 @@
             <section id="second-row-menu" class="second-row-menu">
                 <nav>
                     <ul>
-                        <li><a class="second-row-menu" href="#">Start</a></li>
-                        <li><a class="second-row-menu" href="#">Galeria</a></li>
-                        <li><a class="second-row-menu" href="#">Kontakt</a></li>
-                        <li><a class="second-row-menu" href="#">Cennik</a></li>
-                        <li><a class="second-row-menu" href="#">Zadaj pytanie</a></li>
+                        <li><AnchorLink href="#start">Start</AnchorLink></li>
+                        <li><AnchorLink href="#gallery">Galeria</AnchorLink></li>
+                        <li><AnchorLink href="#contact">Kontakt</AnchorLink></li>
+                        <li><AnchorLink href="#prizeList">Cennik</AnchorLink></li>
+                        <li><AnchorLink href="#description">Opis</AnchorLink></li>
                     </ul>
                 </nav>
             </section>
 
         </div>
-        <div class="row align-items-center">
+        <div class="row align-items-center" id="gallery">
             <section id="third-row-show" class="third-row-show">
                 <div class="third-row-show-image ">
                     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
@@ -73,7 +73,7 @@
             <div class="col-md-10">Zdałem test w samochodzie Konrada po trzech testach wstępnych. Prowizorycznie jeździłem od prawie czterech lat, więc rozwinąłem sporo złych nawyków. Zwiedził mnie całym procesem i tego dnia czułem się bardzo pewny siebie. ”Brona Keogh - Dun Laoghaire, Dublin</div>
 
         </div>
-        <div class=" row align-items-center fifth-row">
+        <div class=" row align-items-center fifth-row" id="description">
             <div class="col-md-7">
                 <h4><b>Zdaj egzamin, dzięki naszej szkole jazdy!</b></h4>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam dignissim tempus leo,
@@ -104,7 +104,7 @@
         </div>
 
        
-        <div class="row align-items-center">
+        <div class="row align-items-center" id="prizeList">
             <div class="columnss col-md-3">
                 <ul class="price">
                     <li class="header">Kategoria A</li>
@@ -153,17 +153,17 @@
             </div>
         </div>
 
-        <div class="row footer bg-dark pt-md-4">
+        <div class="row footer bg-dark pt-md-4" id="contact">
             <div class="col-md-2 footer footer-first-column ">
                 <h6>Menu strony</h6>
                 <br />
 
                 <ul footer-first-column-list>
-                    <li>Start</li>
-                    <li>Galeria</li>
-                    <li>Kontakt</li>
-                    <li>Cena</li>
-                    <li>Cena</li>
+                    <li><AnchorLink href="#start">Start</AnchorLink></li>
+                    <li><AnchorLink href="#gallery">Galeria</AnchorLink></li>
+                    <li><AnchorLink href="#contact">Kontakt</AnchorLink></li>
+                    <li><AnchorLink href="#prizeList">Cennik</AnchorLink></li>
+                    <li><AnchorLink href="#description">Opis</AnchorLink></li>
                 </ul>
 
             </div>
