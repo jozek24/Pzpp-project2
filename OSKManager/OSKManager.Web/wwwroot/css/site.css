@@ -226,6 +226,10 @@ nav {
     .footer-first-column ul li {
         padding-top: 25px;
     }
+        .footer-first-column ul li a {
+            text-decoration: none;
+            color: #fff;
+        }
 
 #blazor-error-ui {
     background: lightyellow;
