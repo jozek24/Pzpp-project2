@@ -9,13 +9,19 @@
 
 }
 else
-	{
-	         @foreach (var item in CategoryList)
-             {
-				 @item.ShortCategory
-             }
-	
+{
+    <div class="container">
+        <div class=" row">
+            @foreach (var item in CategoryList)
+            {
+                <div class=" col-4">
+                    <AddCourseDisplay Category="item"></AddCourseDisplay>
+                </div>
+            }
+        </div>
 
-	}
+    </div>
+
+}
 
 
