@@ -79,5 +79,26 @@ namespace OSKManager.Api.Controllers
                                     "Error creating data from the database");
             }
         }
+
+        [HttpPut()]
+        public async Task<ActionResult<DrivingDate>> UpdateDrivingDate(DrivingDate drivingDate)
+        {
+            try
+            {
+                var drivingDateToUpdate = await repositoryService.GetSingle(drivingDate.Id);
+
+                if (drivingDateToUpdate == null)
+                {
+                    return NotFound($"DrivingDate with Id = {drivingDate.Id} not found");
+                }
+
+                return await repositoryService.Update(drivingDate);
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError,
+                                    "Error updating data from the database");
+            }
+        }
     }
 }
