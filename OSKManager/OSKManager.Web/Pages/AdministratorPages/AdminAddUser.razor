@@ -3,6 +3,9 @@
 
 @using OSKManager.Web.Services
 @using OSKManager.Api.Models
+@using System.ComponentModel
+@using Microsoft.AspNetCore.Identity.EntityFrameworkCore
+@using OSKManager.Web.Services.AdminServices
 
 @inject IAuthService AuthService
 @inject NavigationManager NavigationManager
@@ -20,6 +23,10 @@
 <EditForm Model="RegisterModel" OnValidSubmit="HandleRegistration">
     <DataAnnotationsValidator />
     <ValidationSummary />
+    <div class="form-group">
+        <label for="role">Typ użytkownika</label>
+        <SelectRoleToRegister OnChangeEvent="OnSelectCityChange"></SelectRoleToRegister>
+    </div>
     <div class="form-group">
         <label for="firstName">Imię</label>
         <InputText Id="firstName" class="form-control" @bind-Value="RegisterModel.FirstName" />
@@ -45,20 +52,38 @@
         <InputText Id="password" type="password" class="form-control" @bind-Value="RegisterModel.ConfirmPassword" />
         <ValidationMessage For="@(() => RegisterModel.ConfirmPassword)" />
     </div>
-    <button type="submit" class="form-control col-6 btn btn-primary">Submit</button>
 
-    <a href="/login" class="col-6">Masz już konto?</a>
+    @*@if (SelectedRole == "Instructor")
+            {
+        <div class="form-group">
+            <label for="password">Wybierz kategorię</label>
+
+            <label for="katA"> Kategoria A</label><br>
+            <input type="checkbox" name="katA" value="A">
+            <input type="checkbox" name="vehicle2" value="Car">
+            <label for="vehicle2"> I have a car</label><br>
+            <input type="checkbox" name="vehicle3" value="Boat" checked>
+            <label for="vehicle3"> I have a boat</label><br><br>
+            <input type="submit" value="Submit">
+
+            <ValidationMessage For="@(() => RegisterModel.ConfirmPassword)" />
+        </div>
+            }*@
+
+    <button type="submit" class="form-control col-6 btn btn-primary">Dodaj</button>
 </EditForm>
-
+<div>@SelectedRole</div>
 @code {
 
     private RegisterModel RegisterModel = new RegisterModel();
     private bool ShowErrors;
     private IEnumerable<string> Errors;
+    public string SelectedRole { get; set; }
 
     private async Task HandleRegistration()
     {
         ShowErrors = false;
+        RegisterModel.TypeOfRole = SelectedRole;
 
         var result = await AuthService.Register(RegisterModel);
 
@@ -73,4 +98,8 @@
         }
     }
 
+    private void OnSelectCityChange(ChangeEventArgs changeEventArgs)
+    {
+        SelectedRole = (string)changeEventArgs.Value;
+    }
 }

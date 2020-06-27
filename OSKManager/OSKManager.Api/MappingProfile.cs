@@ -8,8 +8,15 @@ namespace OSKManager.Api
     {
         public MappingProfile()
         {
+            CreateMap<RegisterModel, Administrator>()
+                .ForMember(u => u.UserName,
+                    opt => opt.MapFrom(x => x.Email));
+            CreateMap<RegisterModel, Instructor>()
+                .ForMember(u => u.UserName,
+                    opt => opt.MapFrom(x => x.Email));
             CreateMap<RegisterModel, Student>()
-                .ForMember(u => u.UserName, opt => opt.MapFrom(x => x.Email));
+                .ForMember(u => u.UserName,
+                    opt => opt.MapFrom(x => x.Email));
         }
     }
 }

@@ -4,6 +4,7 @@ using OSKManager.Web.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 
 
@@ -12,13 +13,16 @@ namespace OSKManager.Web.Pages.ClientPages
     public class SingUpCursBase : ComponentBase
     {
         [Inject]
-        public  ICourseService CoursesService { get; set; }
-        public List<Course> Courses { get; set; } = new List<Course>();
+        public ICategoryService CategoryService { get; set; }
+        public List<Category> CategoryList { get; set; }
+       
         protected async override Task OnInitializedAsync()
         {
-            Courses = (await CoursesService.GetCourses()).ToList();
+                     
+            //CategoryList = (await CategoryService.GetCategories()).ToList();
+            CategoryList=(await CategoryService.GetCategories()).ToList();
 
-           
+            
         }
     }
 }

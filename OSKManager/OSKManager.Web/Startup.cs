@@ -35,18 +35,27 @@ namespace OSKManager.Web
             services.AddBlazoredLocalStorage();
             services.AddAuthorizationCore();
 
+            services.AddScoped<AuthenticationStateProvider, ApiAuthenticationStateProvider>();
             services.AddTransient<ValidateHeaderHandler>();
-
-            services.AddHttpClient<ICourseService, CourseService>(client =>
-            {
-                client.BaseAddress = new Uri("https://localhost:44334/");
-            });
-            services.AddHttpClient<IAuthService, AuthService>("servicsdcdfs", x =>
+            services.AddHttpClient<IAuthService, AuthService>( x =>
             {
                 x.BaseAddress = new Uri("https://localhost:5003/");
             });
 
-            services.AddScoped<AuthenticationStateProvider, ApiAuthenticationStateProvider>();
+            services.AddHttpClient<ICourseService, CourseService>(client =>
+            {
+                client.BaseAddress = new Uri("https://localhost:5003/");
+            });
+           
+            services.AddHttpClient<ICategoryService, CategoryService>(client =>
+            {
+                client.BaseAddress = new Uri("https://localhost:5003/");
+            }).AddHttpMessageHandler<ValidateHeaderHandler>();
+
+            services.AddHttpClient<IWorkClassService, WorkClassService>(client =>
+            {
+                client.BaseAddress = new Uri("https://localhost:5003/");
+            });
 
             services.AddSingleton<HttpClient>();
         }

@@ -1,19 +1,27 @@
-﻿@layout ClientLayout
-@page  "/clientSinUp"
+﻿@page  "/clientSinUp"
 @inherits SingUpCursBase
 @using Microsoft.EntityFrameworkCore
 @using OSKManager.Model
 
 
-@if (Courses == null)
+@if (CategoryList == null)
 {
 
 }
 else
-	{
-	         @foreach (var item in Courses)
-             {
-				 @item.Name
-             }
+{
+    <div class="container">
+        <div class=" row">
+            @foreach (var item in CategoryList)
+            {
+                <div class=" col-4">
+                    <AddCourseDisplay Category="item"></AddCourseDisplay>
+                </div>
+            }
+        </div>
 
-	}
+    </div>
+
+}
+
+
