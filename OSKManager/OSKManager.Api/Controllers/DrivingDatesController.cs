@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using OSKManager.Api.Models;
 using OSKManager.Model;
@@ -19,6 +20,21 @@ namespace OSKManager.Api.Controllers
         public DrivingDatesController(IRepositoryService<DrivingDate> repositoryService)
         {
             this.repositoryService = repositoryService;
+        }
+
+        [HttpGet]
+        public async Task<ActionResult> GetDrivingDates()
+        {
+            try
+            {
+                return Ok(await repositoryService.GetAllRecords());
+
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError,
+                    "Error retrieving data from the database");
+            }
         }
     }
 }
