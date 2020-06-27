@@ -1,7 +1,7 @@
 ﻿@layout InstructorLayout
 @inherits IndexBase
 @using OSKManager.Web.Pages.AdministratorPages.Calendar
-@page "/admincalendar"
+@page "/instructorcalendar"
 @using OSKManager.Web.Model
 
 <head>
@@ -24,7 +24,7 @@
 
     <!-- Calendar -->
     <div class="col-sm-12 col-md-12 col-lg-9">
-        <Calendar>
+        <InstructorCalendar>
             <DayTemplate Context="day">
                 @{
                     string currentDayClass = day.Date == DateTime.Now.Date ? "current-day" : "";
@@ -51,15 +51,15 @@
                     </div>
                 }
             </DayTemplate>
-        </Calendar>
+        </InstructorCalendar>
     </div>
 
 
     <!-- Day Menu -->
     <div class="col-sm-12 col-md-12 col-lg-3">
-        <AddEvent SelectedDay="@selectedDay" />
+        <InstructorAddEvent SelectedDay="@selectedDay" />
 
-        <EventsList SelectedDay="@selectedDay" />
+        <InstructorEventsList SelectedDay="@selectedDay" />
     </div>
 </div>
 
