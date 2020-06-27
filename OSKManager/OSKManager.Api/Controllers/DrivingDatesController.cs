@@ -100,5 +100,26 @@ namespace OSKManager.Api.Controllers
                                     "Error updating data from the database");
             }
         }
+
+        [HttpDelete("{id:Guid}")]
+        public async Task<ActionResult<DrivingDate>> DeleteDrivingDate(Guid id)
+        {
+            try
+            {
+                var drivingDateToDelete = await repositoryService.GetSingle(id);
+
+                if (drivingDateToDelete == null)
+                {
+                    return NotFound($"DrivingDate with Id = {id} not found");
+                }
+
+                return await repositoryService.Delete(drivingDateToDelete);
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError,
+                                    "Error deleting data from the database");
+            }
+        }
     }
 }
