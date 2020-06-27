@@ -27,9 +27,9 @@ namespace OSKManager.Web.Services
             await httpClient.DeleteAsync($"api/drivingdates/{id}");
         }
 
-        public Task<DrivingDate> GetDrivingDate(Guid id)
+        public async Task<DrivingDate> GetDrivingDate(Guid id)
         {
-            throw new NotImplementedException();
+            return await httpClient.GetJsonAsync<DrivingDate>($"api/drivingdates/{id}");
         }
 
         public Task<IEnumerable<DrivingDate>> GetDrivingDates()
