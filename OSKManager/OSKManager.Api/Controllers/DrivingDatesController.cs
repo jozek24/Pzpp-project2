@@ -57,5 +57,27 @@ namespace OSKManager.Api.Controllers
                     "Error retrieving data from the database");
             }
         }
+
+        [HttpPost]
+        public async Task<ActionResult<DrivingDate>> CreateDrivingDate(DrivingDate drivingDate)
+        {
+            try
+            {
+                if (drivingDate == null)
+                {
+                    return BadRequest();
+                }
+
+                var createdDrivingDate = await repositoryService.Add(drivingDate);
+
+                return CreatedAtAction(nameof(GetDrivingDate), new { id = drivingDate.Id },
+                    drivingDate);
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError,
+                                    "Error creating data from the database");
+            }
+        }
     }
 }
