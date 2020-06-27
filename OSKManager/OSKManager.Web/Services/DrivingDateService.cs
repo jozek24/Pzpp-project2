@@ -37,9 +37,9 @@ namespace OSKManager.Web.Services
             return await httpClient.GetJsonAsync<DrivingDate[]>("api/drivingdates");
         }
 
-        public Task<DrivingDate> UpdatDrivingDate(DrivingDate updatedDrivingDate)
+        public async Task<DrivingDate> UpdatDrivingDate(DrivingDate updatedDrivingDate)
         {
-            throw new NotImplementedException();
+            return await httpClient.PutJsonAsync<DrivingDate>("api/drivingdates", updatedDrivingDate);
         }
     }
 }
