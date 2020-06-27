@@ -36,5 +36,26 @@ namespace OSKManager.Api.Controllers
                     "Error retrieving data from the database");
             }
         }
+
+        [HttpGet("{id:Guid}")]
+        public async Task<ActionResult<DrivingDate>> GetDrivingDate(Guid id)
+        {
+            try
+            {
+                var result = await repositoryService.GetSingle(id);
+
+                if (result == null)
+                {
+                    return NotFound();
+                }
+
+                return result;
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError,
+                    "Error retrieving data from the database");
+            }
+        }
     }
 }
