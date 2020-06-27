@@ -1,4 +1,5 @@
-﻿using OSKManager.Model;
+﻿using Microsoft.AspNetCore.Components;
+using OSKManager.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,9 +17,9 @@ namespace OSKManager.Web.Services
             this.httpClient = httpClient;
         }
 
-        public Task<DrivingDate> CreateDrivingDate(DrivingDate newDrivingDate)
+        public async Task<DrivingDate> CreateDrivingDate(DrivingDate newDrivingDate)
         {
-            throw new NotImplementedException();
+            return await httpClient.PostJsonAsync<DrivingDate>("api/drivingdates", newDrivingDate);
         }
 
         public Task DeleteDrivingDate(Guid id)
