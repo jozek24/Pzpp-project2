@@ -17,8 +17,4 @@
     <ProjectReference Include="..\OSKManager.Web\OSKManager.Web.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="ServicesTests\" />
-  </ItemGroup>
-
 </Project>
