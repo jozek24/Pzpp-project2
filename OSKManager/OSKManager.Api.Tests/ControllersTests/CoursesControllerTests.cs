@@ -51,9 +51,8 @@ namespace OSKManager.Api.Tests.ControllersTests
             Assert.NotNull(result);
             Assert.IsType<BadRequestResult>(result);
             Assert.Equal(StatusCodes.Status400BadRequest, result.StatusCode);
-
+        }
     }
-
 }
 
 
