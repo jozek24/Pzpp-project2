@@ -18,6 +18,7 @@ namespace OSKManager.Api.Tests.ControllersTests
     {
         private readonly Mock<IRepositoryService<Course>> _mockRepo;
         private readonly CoursesController _controller;
+
         public CoursesControllerTests()
         {
             _mockRepo = new Mock<IRepositoryService<Course>>();
@@ -50,7 +51,6 @@ namespace OSKManager.Api.Tests.ControllersTests
             Assert.NotNull(result);
             Assert.IsType<BadRequestResult>(result);
             Assert.Equal(StatusCodes.Status400BadRequest, result.StatusCode);
-
         }
     }
 }

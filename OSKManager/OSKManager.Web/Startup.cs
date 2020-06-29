@@ -44,7 +44,7 @@ namespace OSKManager.Web
 
             services.AddHttpClient<ICourseService, CourseService>(client =>
             {
-                client.BaseAddress = new Uri("https://localhost:44334/");
+                client.BaseAddress = new Uri("https://localhost:5003/");
             });
            
             services.AddHttpClient<ICategoryService, CategoryService>(client =>

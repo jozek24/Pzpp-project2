@@ -1,1 +1,64 @@
-﻿
+﻿@inherits AddCourseFormBase
+@page "/addCourse"
+
+@using OSKManager.Web.Services
+@using OSKManager.Api.Models
+
+
+@inject NavigationManager NavigationManager
+
+@if (ShowErrors)
+{
+    <div class="alert alert-danger" role="alert">
+        @foreach (var error in Errors)
+        {
+            <p>@error</p>
+        }
+    </div>
+}
+
+<EditForm Model="Course" OnValidSubmit="CreateCourse">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+    <div class="form-group">
+        <label for="Name">Imię</label>
+        <InputText Id="Name" class="form-control" @bind-Value="Course.Name" />
+        <ValidationMessage For="@(() => Course.Name)" />
+    </div>
+    @*<div class="form-group">
+            <label for="lastName">Nazwisko</label>
+            <InputText Id="lastName" class="form-control" @bind-Value="Course." />
+            <ValidationMessage For="@(() => RegisterModel.LastName)" />
+        </div>*@
+    <div class="form-group">
+        <label for="Description">Opis</label>
+        <InputText Id="Description" class="form-control" @bind-Value="Course.Description" />
+        <ValidationMessage For="@(() => Course.Description)" />
+    </div>
+    <div class="form-group">
+        <label for="Description">Opis</label>
+        <InputText Id="Description" class="form-control" @bind-Value="Course.Description" />
+        <ValidationMessage For="@(() => Course.Description)" />
+    </div>
+
+    <button type="submit" class="form-control col-6 btn btn-primary">Submit</button>
+</EditForm>
+@code {
+
+    private Course Course = new Course();
+    private bool ShowErrors;
+    private IEnumerable<string> Errors;
+
+    private async Task CreateCourse()
+    {
+        ShowErrors = false;
+        CategoryList = (await CategoryService.GetCategories()).ToList();
+        
+
+
+
+
+
+    }
+
+}
