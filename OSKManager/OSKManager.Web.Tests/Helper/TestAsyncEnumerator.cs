@@ -7,11 +7,16 @@ namespace OSKManager.Web.Tests.Helper
 {
     internal class TestAsyncEnumerator<T> : IAsyncEnumerator<T>
     {
-        private readonly IEnumerator<T> inner;
+        private readonly IEnumerator<T> _inner;
 
-        public TestAsyncEnumerator(IEnumerator<T> inner)
+        public TestAsyncEnumerator(IEnumerator<T> _inner)
         {
-            this.inner = inner;
+            this._inner = _inner;
+        }
+
+        public void Dispose()
+        {
+            _inner.Dispose();
         }
 
         public T Current => throw new NotImplementedException();
