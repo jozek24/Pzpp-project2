@@ -5,6 +5,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace OSKManager.Web.Tests.Helper
 {
@@ -44,7 +45,7 @@ namespace OSKManager.Web.Tests.Helper
 
         public TResult ExecuteAsync<TResult>(Expression expression, CancellationToken cancellationToken = default)
         {
-            throw new NotImplementedException();
+            return Execute<TResult>(expression);
         }
     }
 }
