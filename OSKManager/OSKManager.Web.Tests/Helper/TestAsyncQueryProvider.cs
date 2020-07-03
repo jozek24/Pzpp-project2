@@ -10,11 +10,11 @@ namespace OSKManager.Web.Tests.Helper
 {
     internal class TestAsyncQueryProvider<TEntity> : IAsyncQueryProvider
     {
-        private readonly IQueryProvider inner;
+        private readonly IQueryProvider _inner;
 
-        internal TestAsyncQueryProvider(IQueryProvider inner)
+        internal TestAsyncQueryProvider(IQueryProvider _inner)
         {
-            this.inner = inner;
+            this._inner = _inner;
         }
 
         public IQueryable CreateQuery(Expression expression)
@@ -29,7 +29,7 @@ namespace OSKManager.Web.Tests.Helper
 
         public object Execute(Expression expression)
         {
-            throw new NotImplementedException();
+            return _inner.Execute(expression);
         }
 
         public TResult Execute<TResult>(Expression expression)
