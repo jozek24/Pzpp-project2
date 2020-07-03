@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace OSKManager.Web.Tests.Helper
@@ -27,14 +28,9 @@ namespace OSKManager.Web.Tests.Helper
             }
         }
 
-        public ValueTask DisposeAsync()
+        public Task<bool> MoveNext(CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
-        }
-
-        public ValueTask<bool> MoveNextAsync()
-        {
-            throw new NotImplementedException();
+            return Task.FromResult(_inner.MoveNext());
         }
     }
 }
