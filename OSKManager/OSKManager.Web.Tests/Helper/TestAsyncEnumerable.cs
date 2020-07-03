@@ -21,5 +21,10 @@ namespace OSKManager.Web.Tests.Helper
         {
             return new TestAsyncEnumerator<T>(this.AsEnumerable().GetEnumerator());
         }
+
+        IQueryProvider IQueryable.Provider
+        {
+            get { return new TestAsyncQueryProvider<T>(this); }
+        }
     }
 }
