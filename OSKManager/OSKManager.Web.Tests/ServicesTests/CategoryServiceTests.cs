@@ -4,7 +4,7 @@ using System.Text;
 
 namespace OSKManager.Web.Tests.ServicesTests
 {
-    class CategoryServiceTests
+    public class CategoryServiceTests
     {
     }
 }

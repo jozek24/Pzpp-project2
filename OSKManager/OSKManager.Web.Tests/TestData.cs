@@ -31,6 +31,27 @@ namespace OSKManager.Web.Tests
             }
         }
 
+        public static IQueryable<Course> Courses
+        {
+            get
+            {
+                return new List<Course>
+                {
+                    new Course
+                    {
+                        Id = Guid.Parse("AA761785-ED42-11CE-DACB-00BDD0057645"),
+                        Name = "Name1"
+                    },
+                    new Course
+                    {
+                        Id = Guid.Parse("AB761785-ED42-11CE-DACB-00BDD0057645"),
+                        Name = "Name2"
+                    }
+                }
+                .AsQueryable();
+            }
+        }
+
         public static IQueryable<Category> Categories
         {
             get
