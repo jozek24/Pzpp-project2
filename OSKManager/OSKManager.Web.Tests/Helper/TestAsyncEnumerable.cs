@@ -19,7 +19,7 @@ namespace OSKManager.Web.Tests.Helper
 
         public IAsyncEnumerator<T> GetAsyncEnumerator(CancellationToken cancellationToken = default)
         {
-            throw new NotImplementedException();
+            return new TestAsyncEnumerator<T>(this.AsEnumerable().GetEnumerator());
         }
     }
 }
