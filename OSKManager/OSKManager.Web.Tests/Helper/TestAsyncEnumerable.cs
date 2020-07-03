@@ -17,11 +17,6 @@ namespace OSKManager.Web.Tests.Helper
             : base(expression)
         { }
 
-        public IAsyncEnumerator<T> GetEnumerator()
-        {
-            return new TestAsyncEnumerator<T>(this.AsEnumerable().GetEnumerator());
-        }
-
         public IAsyncEnumerator<T> GetAsyncEnumerator(CancellationToken cancellationToken = default)
         {
             return new TestAsyncEnumerator<T>(this.AsEnumerable().GetEnumerator());
