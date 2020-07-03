@@ -24,7 +24,7 @@ namespace OSKManager.Web.Tests.Helper
 
         public IQueryable<TElement> CreateQuery<TElement>(Expression expression)
         {
-            throw new NotImplementedException();
+            return new TestAsyncEnumerable<TElement>(expression);
         }
 
         public object Execute(Expression expression)
