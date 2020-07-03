@@ -19,7 +19,13 @@ namespace OSKManager.Web.Tests.Helper
             _inner.Dispose();
         }
 
-        public T Current => throw new NotImplementedException();
+        public T Current
+        {
+            get
+            {
+                return _inner.Current;
+            }
+        }
 
         public ValueTask DisposeAsync()
         {
