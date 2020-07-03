@@ -10,6 +10,13 @@ namespace OSKManager.Web.Tests.Helper
 {
     internal class TestAsyncQueryProvider<TEntity> : IAsyncQueryProvider
     {
+        private readonly IQueryProvider inner;
+
+        internal TestAsyncQueryProvider(IQueryProvider inner)
+        {
+            this.inner = inner;
+        }
+
         public IQueryable CreateQuery(Expression expression)
         {
             throw new NotImplementedException();
