@@ -34,7 +34,7 @@ namespace OSKManager.Web.Tests.Helper
 
         public TResult Execute<TResult>(Expression expression)
         {
-            throw new NotImplementedException();
+            return _inner.Execute<TResult>(expression);
         }
 
         public TResult ExecuteAsync<TResult>(Expression expression, CancellationToken cancellationToken = default)
