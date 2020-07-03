@@ -35,7 +35,7 @@ namespace OSKManager.Web.Tests.Helper
 
         public ValueTask<bool> MoveNextAsync()
         {
-            throw new NotImplementedException();
+            return Task.FromResult<ValueTask<bool>>(_inner.MoveNext());
         }
 
         public ValueTask DisposeAsync()
