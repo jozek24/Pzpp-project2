@@ -18,11 +18,11 @@ namespace OSKManager.Api.Tests.ControllersTests
             throw new NotImplementedException();
         }
 
-        [Fact]
-        public async Task GetAsync_GetLectureDate_NotFound()
-        {
-            var response = await _client.GetAsync("/api/lecturesdate/186");
-            Assert.Equal(HttpStatusCode.NotFound, response.StatusCode);
-        }
+        //[Fact]
+        //public async Task GetAsync_GetLectureDate_NotFound()
+        //{
+        //    var response = await _client.GetAsync("/api/lecturesdate/186");
+        //    Assert.Equal(HttpStatusCode.NotFound, response.StatusCode);
+        //}
     }
 }
