@@ -12,6 +12,8 @@ namespace OSKManager.Web.Pages.AdministratorPages.Calendar
     {
         public List<Category> Categories { get; set; } = new List<Category>();
         public Category Category { get; set; } = new Category();
+        public string Activity { get; set; } = "";
+        public string[] Activities { get; set; } = { "Wykład", "Egzamin wewnętrzny" };
 
         [Inject]
         public ICategoryService CategoryService { get; set; }

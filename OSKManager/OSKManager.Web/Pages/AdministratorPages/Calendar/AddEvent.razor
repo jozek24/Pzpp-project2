@@ -25,9 +25,9 @@
 
         <div class="card-content">
             <div class="form-grop row">
-                <label for="shortCategory" class="col-sm-2 col-form-label">
+                @*<label for="shortCategory" class="col-sm-2 col-form-label">
                     Skrót kategorii
-                </label>
+                </label>*@
                 <div class="col-sm-10">
                     <GuidInputSelect @bind-Value="Category.Id" class="form-control">
                         @foreach (var category in Categories)
@@ -35,6 +35,14 @@
                             <option value="@category.ShortCategory">@category.ShortCategory</option>
                         }
                     </GuidInputSelect>
+                </div>
+                <div class="col-sm-10">
+                    <InputSelect @bind-Value="Activity" class="form-control">
+                        @foreach(var activity in Activities)
+                        {
+                            <option value="@activity">@activity</option>
+                        }
+                    </InputSelect>
                 </div>
             </div>
             
