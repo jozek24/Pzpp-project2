@@ -11,6 +11,7 @@ namespace OSKManager.Web.Pages.AdministratorPages.Calendar
     public class AdministratorAddEventBase : ComponentBase
     {
         public List<Category> Categories { get; set; } = new List<Category>();
+        public Category Category { get; set; } = new Category();
 
         [Inject]
         public ICategoryService CategoryService { get; set; }
@@ -18,6 +19,10 @@ namespace OSKManager.Web.Pages.AdministratorPages.Calendar
         protected async override Task OnInitializedAsync()
         {
             Categories = (await CategoryService.GetCategories()).OrderBy(x => x.ShortCategory).ToList();
+            if(Categories != null)
+            {
+                Category = Categories[0];
+            }
         }
     }
 }
