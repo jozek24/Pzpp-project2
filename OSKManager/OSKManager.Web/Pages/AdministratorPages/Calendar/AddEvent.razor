@@ -1,6 +1,7 @@
 ﻿@inherits AdministratorAddEventBase 
 @*@inject ICalendarEventsProvider eventsProvider*@
 @using OSKManager.Web.Model
+@using OSKManager.Web.Pages.AdministratorPages.Calendar 
 
     <head>
         <meta charset="UTF-8">
@@ -37,16 +38,41 @@
                     </GuidInputSelect>
                 </div>
                 <div class="col-sm-10">
-                    <InputSelect @bind-Value="Activity" class="form-control">
+                    <InputSelect @bind-Value="Activity"
+                                     class="form-control" 
+                                     @onchange="ChangePropertyName">
                         @foreach(var activity in Activities)
                         {
                             <option value="@activity">@activity</option>
                         }
                     </InputSelect>
                 </div>
+                @if (Activity == "Egzamin wewnętrzny" || Activity == "Wykład")
+                {
+                    <div class="">
+                        @MyProperty
+                    </div>
+                }
+                <div class="col-sm-10">
+                    <select id="select-box" bind="@MyProperty">
+                        @foreach (var course in Courses)
+                        {
+                            <option value="@course.Name">@course.Name.ToString()</option>
+                        }
+                    </select>
+                </div>
+                @if(Activity== "Egzamin wewnętrzny")
+                {
+                    <InputSelect @bind-Value="Student.Id">
+                        @foreach (var student in Students)
+                        { 
+                            <option value="@student.Id">@student.FirstName @student.LastName</option>
+	                    }
+                    </InputSelect>
+                }
             </div>
             
-            <h3 class="ms-fontSize-24 ms-fontWeight-regular">@SelectedDay.Date.ToString("D")</h3>
+            <h3 class="ms-fontSize-24 ms-fontWeight-regular">@SelectedDay.Date.ToString("D") + "!" @MyProperty</h3>
             <input type="text" @bind-value="model.Subject" class="fluent-input" placeholder="Temat wydarzenia">
             <input type="time" @bind-value="model.StartDate" class="fluent-input" placeholder="Event Subject">
             <input type="time" @bind-value="model.EndDate" class="fluent-input" placeholder="Event Subject">

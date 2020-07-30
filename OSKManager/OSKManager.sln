@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OSKManager.Web", "OSKManage
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OSKManager.Web.Tests", "OSKManager.Web.Tests\OSKManager.Web.Tests.csproj", "{42D4AEB9-9EAC-44FF-ACD4-F0F0331F9051}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OSKManager.Components", "OSKManager.Components\OSKManager.Components.csproj", "{B204234B-1093-4135-AF5C-A1906775A38B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OSKManager.Components", "OSKManager.Components\OSKManager.Components.csproj", "{B204234B-1093-4135-AF5C-A1906775A38B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

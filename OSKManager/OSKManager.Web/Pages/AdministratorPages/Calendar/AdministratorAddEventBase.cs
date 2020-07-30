@@ -10,13 +10,18 @@ namespace OSKManager.Web.Pages.AdministratorPages.Calendar
 {
     public class AdministratorAddEventBase : ComponentBase
     {
+        [Inject]
+        public ICategoryService CategoryService { get; set; }
         public List<Category> Categories { get; set; } = new List<Category>();
         public Category Category { get; set; } = new Category();
         public string Activity { get; set; } = "";
         public string[] Activities { get; set; } = { "Wykład", "Egzamin wewnętrzny" };
+        public Course Course { get; set; } = new Course();
+        public List<Course> Courses { get; set; } = new List<Course>();
+        public Student Student { get; set; } = new Student();
+        public List<Student> Students { get; set; } = new List<Student>();
 
-        [Inject]
-        public ICategoryService CategoryService { get; set; }
+        public string MyProperty { get; set; } = "";
 
         protected async override Task OnInitializedAsync()
         {
@@ -25,6 +30,10 @@ namespace OSKManager.Web.Pages.AdministratorPages.Calendar
             {
                 Category = Categories[0];
             }
+        }
+        protected async Task ChangePropertyName(ChangeEventArgs e)
+        {
+            MyProperty = e.Value.ToString();
         }
     }
 }
