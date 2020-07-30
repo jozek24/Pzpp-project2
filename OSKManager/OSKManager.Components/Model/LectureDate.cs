@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace OSKManager.Model
+namespace OSKManager.Components.Model
 {
     public class LectureDate : IEntity<Guid>
     {

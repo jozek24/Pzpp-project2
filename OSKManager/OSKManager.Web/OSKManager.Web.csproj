@@ -13,6 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\OSKManager.Components\OSKManager.Components.csproj" />
     <ProjectReference Include="..\OSKManager.Model\OSKManager.Model.csproj" />
   </ItemGroup>
 
