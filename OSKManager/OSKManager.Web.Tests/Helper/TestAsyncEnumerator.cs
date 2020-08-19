@@ -8,16 +8,16 @@ namespace OSKManager.Web.Tests.Helper
 {
     internal class TestAsyncEnumerator<T> : IAsyncEnumerator<T>
     {
-        private readonly IAsyncEnumerator<T> _inner;
+        private readonly IEnumerator<T> _inner;
 
-        public TestAsyncEnumerator(IAsyncEnumerator<T> _inner)
+        public TestAsyncEnumerator(IEnumerator<T> _inner)
         {
             this._inner = _inner;
         }
 
         public void Dispose()
         {
-            _inner.DisposeAsync();
+            _inner.Dispose();
         }
 
         public T Current
@@ -30,12 +30,12 @@ namespace OSKManager.Web.Tests.Helper
 
         public ValueTask<bool> MoveNextAsync()
         {
-            return _inner.MoveNextAsync();
+            return new ValueTask<bool>();
         }
 
         public ValueTask DisposeAsync()
         {
-            return _inner.DisposeAsync();
+            return new ValueTask();
         }
     }
 }
