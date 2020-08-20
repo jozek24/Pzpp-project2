@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Castle.DynamicProxy.Generators;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
 using OSKManager.Api.Controllers;
@@ -23,6 +24,8 @@ namespace OSKManager.Api.Tests.Controllers
             _mockRepo = new Mock<IRepositoryService<Category>>();
             categoryController = new CategoryController(_mockRepo.Object);
         }
+
+        [Fact]
         public void GetCategories_ReturnCategories()
         {
             var categoriesList = new List<Category> { new Category(), new Category() };
@@ -35,6 +38,87 @@ namespace OSKManager.Api.Tests.Controllers
             Assert.NotNull(result);
             Assert.True(result is OkObjectResult);
             Assert.Equal(StatusCodes.Status200OK, result.StatusCode);
+        }
+
+        [Fact]
+        public void GetCategories_DoesntReturnValue()
+        {
+            var categoriesList = new List<Category>();
+            _mockRepo.Setup(repo => repo.GetAllRecords())
+                .Returns(Task.FromResult(categoriesList.AsQueryable()));
+
+            var actionResult = categoryController.GetCategories();
+            var result = actionResult.Result as ObjectResult;
+
+            Assert.NotNull(result);
+            //Assert.Throws<ArgumentException>("Url, connection", () => _HTMLDataAccess.GetHTML(""));
+        }
+
+        [Fact]
+        public void DeleteCategory_Valid()
+        {
+            var categoriesList = new List<Category> { new Category { Id = Guid.Parse("AC761785-ED42-11CE-DACB-00BDD0057645") }, new Category() };
+            _mockRepo.Setup(repo => repo.GetAllRecords())
+                .Returns(Task.FromResult(categoriesList.AsQueryable()));
+
+            var actionResult = categoryController.DeleteCategory(Guid.Parse("AC761785-ED42-11CE-DACB-00BDD0057645"));
+            var result = actionResult.Result;
+
+            Assert.IsType<OkResult>(result);
+        }
+
+        [Fact]
+        public void CreateCategory_IsValid()
+        {
+            var category = new Category { Id = Guid.Parse("AC761785-ED42-11CE-DACB-00BDD0057645") };
+            var categoriesList = new List<Category>();
+            _mockRepo.Setup(repo => repo.GetAllRecords())
+                .Returns(Task.FromResult(categoriesList.AsQueryable()));
+
+            var actionResult = categoryController.CreateCategory(category);
+            var result = actionResult.Result;
+
+            Assert.NotNull(result);
+        }
+
+        [Fact]
+        public void CreateCategory_Invalid()
+        {
+            var category = new Category();
+            var categoriesList = new List<Category>();
+            _mockRepo.Setup(repo => repo.GetAllRecords())
+                .Returns(Task.FromResult(categoriesList.AsQueryable()));
+
+            var actionResult = categoryController.CreateCategory(category);
+            var result = actionResult.Result;
+
+            Assert.NotNull(result);
+        }
+
+        [Fact]
+        public void GetCategory_IsValid()
+        {
+            var categoriesList = new List<Category> { new Category { Id = Guid.Parse("AC761785-ED42-11CE-DACB-00BDD0057645") }, new Category() };
+            _mockRepo.Setup(repo => repo.GetAllRecords())
+                .Returns(Task.FromResult(categoriesList.AsQueryable()));
+
+            var actionResult = categoryController.GetCategory(Guid.Parse("AC761785-ED42-11CE-DACB-00BDD0057645"));
+            var result = actionResult.Result;
+
+            Assert.NotNull(result);
+        }
+
+        [Fact]
+        public void GetCategory_Invalid()
+        {
+            var categoriesList = new List<Category> { new Category(), new Category() };
+            _mockRepo.Setup(repo => repo.GetAllRecords())
+                .Returns(Task.FromResult(categoriesList.AsQueryable()));
+
+            var actionResult = categoryController.GetCategory(Guid.Parse("AC761785-ED42-11CE-DACB-00BDD0057645"));
+            var result = actionResult.Result;
+
+            Assert.NotNull(result);
         }
     }
 }
