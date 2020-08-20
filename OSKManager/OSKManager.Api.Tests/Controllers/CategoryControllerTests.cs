@@ -57,14 +57,15 @@ namespace OSKManager.Api.Tests.Controllers
         [Fact]
         public void DeleteCategory_Valid()
         {
-            var categoriesList = new List<Category> { new Category { Id = Guid.Parse("AC761785-ED42-11CE-DACB-00BDD0057645") }, new Category() };
-            _mockRepo.Setup(repo => repo.GetAllRecords())
-                .Returns(Task.FromResult(categoriesList.AsQueryable()));
+            var category = new Category { Id = Guid.Parse("AC761785-ED42-11CE-DACB-00BDD0057645") };
+          
+            _mockRepo.Setup(x => x.Delete(category));
+            _mockRepo.Object.Delete(category);
 
-            var actionResult = categoryController.DeleteCategory(Guid.Parse("AC761785-ED42-11CE-DACB-00BDD0057645"));
-            var result = actionResult.Result;
+            _mockRepo.Setup(x => x.GetSingle(Guid.Parse("AC761785-ED42-11CE-DACB-00BDD0057645")));
+            _mockRepo.Object.GetSingle(Guid.Parse("AC761785-ED42-11CE-DACB-00BDD0057645"));
 
-            Assert.IsType<OkResult>(result);
+            _mockRepo.Verify(x => x.Delete(category), Times.Once);
         }
 
         [Fact]
