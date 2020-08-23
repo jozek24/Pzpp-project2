@@ -72,14 +72,9 @@ namespace OSKManager.Api.Tests.Controllers
         public void CreateCategory_IsValid()
         {
             var category = new Category { Id = Guid.Parse("AC761785-ED42-11CE-DACB-00BDD0057645") };
-            var categoriesList = new List<Category>();
-            _mockRepo.Setup(repo => repo.GetAllRecords())
-                .Returns(Task.FromResult(categoriesList.AsQueryable()));
-
-            var actionResult = categoryController.CreateCategory(category);
-            var result = actionResult.Result;
-
-            Assert.NotNull(result);
+            _mockRepo.Setup(x => x.Add(category));
+            _mockRepo.Object.Add(category);
+            _mockRepo.Verify(x => x.Add(category), Times.Once());
         }
 
         [Fact]
