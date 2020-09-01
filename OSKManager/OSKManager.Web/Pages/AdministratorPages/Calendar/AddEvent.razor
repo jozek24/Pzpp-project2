@@ -26,10 +26,44 @@
 
         <div class="card-content">
             <div class="form-grop row">
-                @*<label for="shortCategory" class="col-sm-2 col-form-label">
-                    Skrót kategorii
-                </label>*@
                 <div class="col-sm-10">
+                    <InputSelect ValueExpression="@(()=>Category.ShortCategory)"
+                                 Value="@Category.ShortCategory"
+                                 ValueChanged="@((string value) => OnValueChanged(value))">
+                        @foreach (var category in Categories)
+                        { 
+                            <option value=@category.ShortCategory>@category.ShortCategory</option>
+                        }
+                    </InputSelect>
+                </div>
+                @if (Category.ShortCategory != null)
+                {
+                    <div class="col-sm-10">
+                        <InputSelectEnum @bind-Value="des.Season" />
+                    </div>
+
+                    @if (ListOfCourses != null)
+                    {
+                        <div class="col-sm-10">
+                            <InputSelect ValueExpression="@(()=>Course.Name)"
+                                         Value="@Course.Name"
+                                         ValueChanged="@((string value) => OnValueChangedCourses(value))">
+                                @foreach (var course in ListOfCourses)
+                                {
+                                    <option value="@course.Name">@course.Name</option>
+                                }
+                            </InputSelect>
+                        </div>
+                        @if (true)
+                        {
+                            <div class="col-sm-10">
+
+                            </div>
+                        }
+                    }
+                }
+
+                @*<div class="col-sm-10">
                     <GuidInputSelect @bind-Value="Category.Id" class="form-control">
                         @foreach (var category in Categories)
                         {
@@ -39,15 +73,15 @@
                 </div>
                 <div class="col-sm-10">
                     <InputSelect @bind-Value="Activity"
-                                     class="form-control" 
-                                     @onchange="ChangePropertyName">
-                        @foreach(var activity in Activities)
+                                 @onchange="@((args) => MyProperty = args.Value.ToString())"
+                                 class="form-control">
+                        @foreach (var activity in Activities)
                         {
                             <option value="@activity">@activity</option>
                         }
-                    </InputSelect>
-                </div>
-                @if (Activity == "Egzamin wewnętrzny" || Activity == "Wykład")
+                    </InputSelect>*@
+                @*</div>*@
+                @*@if (Activity == "Egzamin wewnętrzny" || Activity == "Wykład")
                 {
                     <div class="">
                         @MyProperty
@@ -60,16 +94,20 @@
                             <option value="@course.Name">@course.Name.ToString()</option>
                         }
                     </select>
-                </div>
-                @if(Activity== "Egzamin wewnętrzny")
+                </div>*@
+
+                @*<InputSelectEnum @bind-Value="EnumCategory" />*@
+
+                @*<span>Selected value 2: @EnumCategory</span>*@
+                @*@if (Activity == "Egzamin wewnętrzny")
                 {
                     <InputSelect @bind-Value="Student.Id">
                         @foreach (var student in Students)
-                        { 
+                            {
                             <option value="@student.Id">@student.FirstName @student.LastName</option>
-	                    }
+                            }
                     </InputSelect>
-                }
+                }*@
             </div>
             
             <h3 class="ms-fontSize-24 ms-fontWeight-regular">@SelectedDay.Date.ToString("D") + "!" @MyProperty</h3>

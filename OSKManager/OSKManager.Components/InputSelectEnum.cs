@@ -4,12 +4,13 @@ using Microsoft.AspNetCore.Components.Rendering;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Globalization;
 using System.Reflection;
 using System.Text;
 
 namespace OSKManager.Components
 {
-    public class GuidInputSelect<TValue> : InputSelect<TValue>
+    public sealed class InputSelectEnum<TEnum> : InputBase<TEnum>
     {
         protected override void BuildRenderTree(RenderTreeBuilder builder)
         {
@@ -20,45 +21,44 @@ namespace OSKManager.Components
             builder.AddAttribute(4, "onchange", EventCallback.Factory.CreateBinder<string>(this, value => CurrentValueAsString = value, CurrentValueAsString, null));
 
             var i = 5;
-            var guidType = GetGuidType();
+            var enumType = GetEnumType();
+            foreach (TEnum value in Enum.GetValues(enumType))
+            {
+                builder.OpenElement(i++, "option");
+                builder.AddAttribute(i++, "value", value.ToString());
+                builder.AddContent(i++, GetDisplayName(value));
+                builder.CloseElement();
+            }
 
-            //foreach (Guid value in Guid.GetValues(guidType);
-            //{
-            //    builder.OpenElement(i++, "option");
-            //    builder.AddAttribute(i++, "value", value.ToString());
-            //    builder.AddContent(i++, GetDisplayName(value));
-            //    builder.CloseElement();
-            //}
-
-            builder.CloseElement();
+            builder.CloseElement(); 
         }
 
-        protected override bool TryParseValueFromString(string value, out TValue result,
-            out string validationErrorMessage)
+        protected override bool TryParseValueFromString(string value, out TEnum result, out string validationErrorMessage)
         {
-            if (typeof(TValue) == typeof(Guid))
+            if (BindConverter.TryConvertTo(value, CultureInfo.CurrentCulture, out TEnum parsedValue))
             {
-                if (Guid.TryParse(value, out var resultGuid))
+                result = parsedValue;
+                validationErrorMessage = null;
+                return true;
+            }
+
+            if (string.IsNullOrEmpty(value))
+            {
+                var nullableType = Nullable.GetUnderlyingType(typeof(TEnum));
+                if (nullableType != null)
                 {
-                    result = (TValue)(object)resultGuid;
+                    result = default;
                     validationErrorMessage = null;
                     return true;
                 }
-                else
-                {
-                    result = default;
-                    validationErrorMessage =
-                        $"The selected value {value} is not a valid number.";
-                    return false;
-                }
             }
-            else
-            {
-                return base.TryParseValueFromString(value, out result, out validationErrorMessage);
-            }
+
+            result = default;
+            validationErrorMessage = $"The {FieldIdentifier.FieldName} field is not valid.";
+            return false;
         }
 
-        private string GetDisplayName(Guid value)
+        private string GetDisplayName(TEnum value)
         {
             var member = value.GetType().GetMember(value.ToString())[0];
             var displayAttribute = member.GetCustomAttribute<DisplayAttribute>();
@@ -68,13 +68,13 @@ namespace OSKManager.Components
             return value.ToString();
         }
 
-        private Type GetGuidType()
+        private Type GetEnumType()
         {
-            var nullableType = Nullable.GetUnderlyingType(typeof(Guid));
+            var nullableType = Nullable.GetUnderlyingType(typeof(TEnum));
             if (nullableType != null)
                 return nullableType;
 
-            return typeof(Guid);
+            return typeof(TEnum);
         }
     }
 }
